@@ -1,13 +1,15 @@
 # NoiseBarrierTool
-The **NoiseBarrierTool** consist of individual PythonParts and enables the creation of noise barriers based on a 3D surface as terrain and a 3D polyline as route axis
-- **DrawPath** a new layer file from an external template
-- **RecalculatePath** an existing layer file
-- **SavePathPoints** of a layer file modified in Excel
-- **CreateWallComponents** a new layer file from an external template
-- **DrawWallElevations** an existing layer file
-- **DrawWallSection** of a layer file modified in Excel
+The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-related creation of noise barrier walls both as 3D objects and 2D drawings. Bais for the creation is a 3D surface (polyhedron) as terrain and a 3D polyline as route axis. Each step of the complete workflow can be executed with an individual PythonPart:
+- **DrawPath** to determine the initial path
+- **RecalculatePath** to aligne a modified path
+- **SavePathPoints** to save the geometry and object parameters
+- **CreateWallComponents** to create a 3D model of the noise barrier wall
+- **DrawWallElevations** to create a 2D longitudinal views of the noise barrier wall
+- **DrawWallSection** to create 2D sections of the noise barrier wall piles
 
-The Excel file used for this purpose has to follow the provided schema to make sure that the PythonPart can read it when executed.
+<img src = "./docs/NoiseBarrierContent.png" width = 450/>
+
+Another main component of the tool is the Excel file **NoiseBarrierParameters.xlsx**.
 
 ## Installation
 The PythonPart **NoiseBarrierTool** can be installed directly from the Plugin Manager in ALLPLAN. 
@@ -17,6 +19,6 @@ Alternatively, the corresponding ***.allep** package can be downloaded from the 
 At least the version 2026 is needed to install the PythonPart.
 
 ## Installed PythonPart Scripts
-If the installation was successfull, the PythonPart **LayerHandling.pyp** as well as the Ecxel schema template **Schema_LayerHandling.xlsx** can be found
+If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierParameters.xlsx** can be found
 in the ALLPLAN Library:
 `Office` → `ALLPLAN GmbH` → `NoiseBarrierTool`
