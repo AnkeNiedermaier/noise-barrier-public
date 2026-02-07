@@ -34,12 +34,12 @@ Besides the library, the tools PythonParts can also be found in the ActionBar in
 ## Preparation
 As mentioned, the basis for the tool are **3D polylines** and connected close **3D areas** in the form of polyhedrons.
 
-<img src = "./docs/Basic_Surface.png" width = 180/>           
-<img src = "./docs/Basic_Polyline.png" width = 180/>
+<img src = "./docs/Basic_Surface.png" width = 250/>
+<img src = "./docs/Basic_Polyline.png" width = 250/>
 
 Therefor it might be necessary to convert the existing ALLPLAN objects into such types. This is done in using functions from the **Modeling** modul, mainly **Convert Elements** and **Shell**.
 
-<img src = "./docs/Prep_Convert_I.png" width = 150/>    
+<img src = "./docs/Prep_Convert_I.png" width = 150/>
 <img src = "./docs/Prep_Convert_II.png" width = 150/>
 
 
