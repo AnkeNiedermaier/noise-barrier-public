@@ -1,18 +1,18 @@
 # NoiseBarrierTool
-The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-related creation of noise barrier walls both as 3D objects and 2D drawings. Bais for the creation is a 3D surface (polyhedron) as terrain and a 3D polyline as route axis. Each step of the complete workflow can be executed with an individual PythonPart:
+The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-related creation of noise barriers both as 3D objects and 2D drawings. Bais for the creation is a 3D surface (polyhedron) as terrain and a 3D polyline as route axis. Each step of the complete workflow can be executed with an individual PythonPart:
 - **DrawPath** to determine the initial path
 - **RecalculatePath** to aligne a modified path
 - **SavePathPoints** to save the geometry and object parameters
-- **CreateWallComponents** to create a 3D model of the noise barrier wall
-- **DrawWallElevations** to create 2D longitudinal views of the noise barrier wall
-- **DrawWallSection** to create 2D sections of the noise barrier wall piles
+- **CreateWallComponents** to create a 3D model of the noise barrier
+- **DrawWallElevations** to create 2D longitudinal views of the noise barrier
+- **DrawWallSection** to create 2D sections of the noise barrier piles
 
 <img src = "./docs/NoiseBarrierContent.png" width = 450/>
 
-Altough related to each other, the workflow steps are more or less idependent. Therefor besides creating noise barrier walls, the tool can also be used to calculate **route courses in a terrain** as placement basis for any kind of object. The ALLPLAN function **Copy along path** for example serves this purpose.
+Altough related to each other, the workflow steps are more or less idependent. Therefor besides creating noise barrierss, the tool can also be used to calculate **route courses in a terrain** as placement basis for any kind of object. The ALLPLAN function **Copy along path** for example serves this purpose.
 
 
-Another essential component of the tool is the Excel file **NoiseBarrierParameters.xlsx**. All parameters and key values of the noise barrier wall are saved and (re)calculated here.The file also enables the individual adaption and modification of each segment. In addition it can be used to retrieve coordinates and geometric values for further use, for example as basis for quantity or cost calculation.
+Another essential component of the tool is the Excel file **NoiseBarrierParameters.xlsx**. All parameters and key values of the noise barrier are saved and (re)calculated here.The file also enables the individual adaption and modification of each segment. In addition it can be used to retrieve coordinates and geometric values for further use, for example as basis for quantity or cost calculation.
 Together with the other components, also several ***.rdlc  templates** are installed. They can be used to evaluate the 3D objects both as ALLPLAN reports or Excel tables. 
 
 ## Installation
@@ -32,17 +32,39 @@ Besides the library, the tools PythonParts can also be found in the ActionBar in
 
 
 ## Preparation
-As mentioned, the basis for the tool are **3D polylines** and connected close **3D areas** in the form of polyhedrons.
+As mentioned, the basis for the tool are **3D polylines** and connected close **3D areas** in the form of surfaces/polyhedrons.
 
-<img src = "./docs/Basic_Surface.png" width = 250/> <img src = "./docs/Basic_Polyline.png" width = 250/>
+<img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
 
 Therefor it might be necessary to convert the existing ALLPLAN objects into such types. This is done in using functions from the **Modeling** modul, mainly **Convert Elements** and **Shell**.
 
-<img src = "./docs/Prep_Convert_I.png" width = 150/>  <img src = "./docs/Prep_Convert_II.png" width = 150/>
+<img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
 
 
-To union individual areas, the **Boolean operator** of the same name can be used, as it not only serves for 3D bodies. All objects used as basis have to be on drawing files either in active or edit mode, as in reference mode a selection is not possible.
+To union individual areas, the **Boolean operator** of the same name can be used, as it not only serves for 3D bodies. All objects intended as basis have to be on drawing files either in **active** or **edit mode**, as in reference mode a selection is not possible.
 
+## Workflow
 
+The complete workflow with all the options the tool offers, from drawing the inital path up to the evaluation of the wall components, contains several steps. Most of them are also represented by one of the individual PythonParts:
+- defining the inital noise barrier path
+- modifying it to fit the local conditions
+- recalculating the the modified path
+- saving coordinates and object parameters
+- adjusting individual wall segments
+- creating 3D models of the noise barrier
+- drawing views and sections
+- evaluating the 3D objects
+
+Altgough they are executed separte and not necessarily sequently, initial definition and saving in the excel file are mandatory to create objects or drawings in ALLPLAN. Therefor it is recommended to follow the described order and skip not beeded steps inbetween the workflow.
+
+In general, all installed PythonParts can be found in the **Library palette**, no matter if an additional ActionBar entry is created or not. They are started either with a **double-click** on the icon or per **Drag and Drop** into the viewport. This shows the corresponding Properties palette and executes the underlying skripts.
+
+### Step I: PythonPart DrawPath
+Calculation of the inital noise barrier path concurrent to the existing route course polyline
+- selection of the terrain (3D surface) and the route axis (3D polyline) in the given order
+- input of the desired values for path distance from axis and lenght of the single segments
+- definition of the axis part to take over, either complete or in entering a start and end point
+- definition of the direction (ascending/descending) of the calculation
+-  
 
 
