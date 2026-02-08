@@ -58,13 +58,19 @@ The complete workflow with all the options the tool offers, from drawing the ini
 Altgough they are executed separte and not necessarily sequently, initial definition and saving in the excel file are mandatory to create objects or drawings in ALLPLAN. Therefor it is recommended to follow the described order and skip not beeded steps inbetween the workflow.
 
 In general, all installed PythonParts can be found in the **Library palette**, no matter if an additional ActionBar entry is created or not. They are started either with a **double-click** on the icon or per **Drag and Drop** into the viewport. This shows the corresponding Properties palette and executes the underlying skripts.
-
+##
 ### Step I: PythonPart DrawPath
 Calculation of the inital noise barrier path concurrent to the existing route course polyline
 - selection of the terrain (3D surface) and the route axis (3D polyline) in the given order
 - input of the desired values for path distance from axis and lenght of the single segments
-- definition of the axis part to take over, either complete or in entering a start and end point
+- definition of the axis part to take over, either complete or in entering a start and end point number
 - definition of the direction (ascending/descending) of the calculation
--  
+- setting of the path and numbering format (pen, stoke, color layer)
+
+Once terrain and route are selected, a preview  is shown and can be adapted in changing the palette values. With the create button the inital path is drawn as element group of a 3D polyline and 2D text in the current active drawing file.<br>
+>**HINT**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation and also new sources for route and terrain can be choosen<br>
+##
+### Step II: Path modification
+Calculation of the inital noise
 
 
