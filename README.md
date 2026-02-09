@@ -58,10 +58,14 @@ The complete workflow with all the options the tool offers, from drawing the ini
 Altgough they are executed separte and not necessarily sequently, initial definition and saving in the Excel file are mandatory to create objects or drawings in ALLPLAN. Therefor it is recommended to follow the described order and skip not needed steps inbetween the workflow.
 
 In general, all installed PythonParts can be found in the **Library palette**, no matter if an additional ActionBar entry is created or not. They are started either with a **double-click** on the icon or per **Drag and Drop** into the viewport. This shows the corresponding Properties palette and executes the underlying skripts.
+>**HINT**: the PythonPart palette contains the 3 common buttons **Save as a favorite**, **Load favorite** and **Restore basic settings** in the left bottom corner. They can be used to store and reread individual entered values which is mainly usefull for the wall and object parameters
+
+<img src = "./docs/Palette_Favorites.png" width = 150/><br>
+
 ##
 ### Step I: PythonPart DrawPath
 
-<img src = "./docs/PP_DrawPath.png" width = 200/><br>
+<img src = "./docs/PP_DrawPath.png" width = 150/><br>
 Calculation of the inital noise barrier path concurrent to the existing route course polyline
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline) in the given order
 - input of the desired values for **path distance** from axis and **lenght** of the single segments
@@ -79,12 +83,14 @@ Modification of the path polyline directly in the ALLPLAN viewport with the comm
 - remove points in draging them onto an adjacent one
 - ...
 
+<img src = "./docs/Poly_Modi.png" width = 180/><br>
+
 > ⚠️ **IMPORTANT**:
 > To make sure that the further workflow steps are executed correctly remaine **one** continuouse polyline. Therefor it might be necessary to union it again after modification with the **Combine Lines to Make Polylines** function
 ##
 ### Step III: PythonPart RecalculatePath
 
-<img src = "./docs/PP_RecalcPath.png" width = 200/><br>
+<img src = "./docs/PP_RecalcPath.png" width = 150/><br>
 Readjustment of the modified path to the terrain height or assignment of different segmentations to parts of the (modified) path. The procedure is almost identical with that in Step I
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline)
 - input of the desired **adoption kind**, either height adjustment or new calculation
@@ -96,19 +102,31 @@ successive adoptions of the same or another path can be taken at once as the pal
 ##
 ### Step IV: PythonPart SavePathPoints
 
-<img src = "./docs/PP_SavePoints.png" width = 200/><br>
-Save the final path course togehter with the inital parameters of the noise barrier and its components in the Excel file. For each of them the PythonPart contains a separate tab:
+<img src = "./docs/PP_SavePoints.png" width = 150/><br>
+> ⚠️ **IMPORTANT**:
+> It is recommended to always use a copy of the Excel sheet or even Excel file and not overwrite the original one
+
+Save the final path course togehter with the inital parameters of the noise barrier and its components in the **Excel file** delivered with the tool. For each of them the PythonPart contains a separate tab:
 - Select calculation bases
     - selection of the **terrain** (3D surface), the **path course** (3D polyline) and the **route axis** (3D polyline)
     - input of the distance values for the parallel inner and outer **terrain course**
 - Set wall parameters
-    - input of the inital parameters related to the complete wall
-    - selection of the calculation method for the plinth top
+    - input of the inital parameters related to the **complete wall**
+    - selection of the **calculation method** for the plinth top
 - Select object parameters - save points
-    - input of the initial parameters for the individual wall components (pire, pile, plinth, panel)
-    - selection of the Excel file and sheet
+    - input of the initial parameters for the individual **wall components** (pire, pile, plinth, panel)
+    - selection of the **Excel file** and sheet
 
-Once all calculation bases are selected, a preview shows the parallel terrain courses togehter with a perpendicular line from each path point to the route axis. With the **save** button the deired geometry and parameter values are written to the Excel file
+Once all calculation bases are selected, a **preview** shows the parallel terrain courses togehter with perpendicular lines from each path point to the route axis. With the **Save** button the desired geometry and parameter values are written to the Excel file and optional the perpendicular lines are drawn as construction lines in the active drawing file
+>**HINTS**: it is only possible to set **one** global value for each wall and component parameter in the PythonPart during the **SavePoints** step. They can be adopted afterwards individually for each segment in the **Excel file**
+the wall and object parameters already contain common start values, therefor it is not necessary to enter something in these tabs
+several path courses can be saved in one step as long as the palette is open. To do so it is necessary to **copy the existing Excel file schema** sheet in andvance as only this sheet contains the formulas and cross references that are needed to finaly calculate the noise barrrier objects
 
+##
+### Step V: Individual adjustment 
+> ⚠️ **IMPORTANT**:
+> The **order and structure** within the Excel file is fixed and serves as basis for the object calculation and creation. Therefor it has to **be kept unchanged** and only cells with a **simple value** but none with **formulas or references** can be modified. Otherwise the execution of the script will throw errors or even no longer work at all
+
+Modifying the initial general parameters of the wall components for each individual segment in the Excel file. Similar to the palette structure of the SavePoints PythonPart the can be found in the **General wall parameters** and  **Component parameters** section
 
 
