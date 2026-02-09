@@ -61,7 +61,7 @@ In general, all installed PythonParts can be found in the **Library palette**, n
 ##
 ### Step I: PythonPart DrawPath
 
-<img src = "./docs/PP_DrawPath.png" width = 100/><br>
+<img src = "./docs/PP_DrawPath.png" width = 200/><br>
 Calculation of the inital noise barrier path concurrent to the existing route course polyline
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline) in the given order
 - input of the desired values for **path distance** from axis and **lenght** of the single segments
@@ -84,17 +84,31 @@ Modification of the path polyline directly in the ALLPLAN viewport with the comm
 ##
 ### Step III: PythonPart RecalculatePath
 
-<img src = "./docs/PP_RecalcPath.png" width = 100/><br>
+<img src = "./docs/PP_RecalcPath.png" width = 200/><br>
 Readjustment of the modified path to the terrain height or assignment of different segmentations to parts of the (modified) path. The procedure is almost identical with that in Step I
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline)
 - input of the desired **adoption kind**, either height adjustment or new calculation
 - only with the second kind definition of the **part** to be recalculated, the desired **direction** and value for the **segment length**
 - setting of the path and numbering **format** (pen, stroke, color, layer)
-The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existiong path** option.<br>
+The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
 >**HINTS**: with the adoption kind adjust height the path course as such remains unchanged as only the Z value will be adapted<br>
-successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process<br>
+successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process
 ##
 ### Step IV: PythonPart SavePathPoints
-Save the final path course togehter with the inital parameters of the noise barrier and its components in the Excel file
+
+<img src = "./docs/PP_SavePoints.png" width = 200/><br>
+Save the final path course togehter with the inital parameters of the noise barrier and its components in the Excel file. For each of them the PythonPart contains a separate tab:
+- Select calculation bases
+    - selection of the **terrain** (3D surface), the **path course** (3D polyline) and the **route axis** (3D polyline)
+    - input of the distance values for the parallel inner and outer **terrain course**
+- Set wall parameters
+    - input of the inital parameters related to the complete wall
+    - selection of the calculation method for the plinth top
+- Select object parameters - save points
+    - input of the initial parameters for the individual wall components (pire, pile, plinth, panel)
+    - selection of the Excel file and sheet
+
+Once all calculation bases are selected, a preview shows the parallel terrain courses togehter with a perpendicular line from each path point to the route axis. With the **save** button the deired geometry and parameter values are written to the Excel file
+
 
 
