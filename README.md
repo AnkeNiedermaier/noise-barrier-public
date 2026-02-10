@@ -83,15 +83,17 @@ Modification of the path polyline directly in the ALLPLAN viewport with the comm
 - remove points in draging them onto an adjacent one
 - ...
 
-<img src = "./docs/Poly_Modi.png" width = 180/><br>
+<img src = "./docs/Poly_Modi.png" width = 250/><br>
 
 > ⚠️ **IMPORTANT**:
 > To make sure that the further workflow steps are executed correctly remaine **one** continuouse polyline. Therefor it might be necessary to union it again after modification with the **Combine Lines to Make Polylines** function
+
 ##
 ### Step III: PythonPart RecalculatePath
 
 <img src = "./docs/PP_RecalcPath.png" width = 150/><br>
 Readjustment of the modified path to the terrain height or assignment of different segmentations to parts of the (modified) path. The procedure is almost identical with that in Step I
+
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline)
 - input of the desired **adoption kind**, either height adjustment or new calculation
 - only with the second kind definition of the **part** to be recalculated, the desired **direction** and value for the **segment length**
@@ -99,10 +101,12 @@ Readjustment of the modified path to the terrain height or assignment of differe
 The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
 >**HINTS**: with the adoption kind adjust height the path course as such remains unchanged as only the Z value will be adapted<br>
 successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process
+
 ##
 ### Step IV: PythonPart SavePathPoints
 
 <img src = "./docs/PP_SavePoints.png" width = 150/><br>
+
 > ⚠️ **IMPORTANT**:
 > It is recommended to always use a copy of the Excel sheet or even Excel file and not overwrite the original one
 
@@ -128,5 +132,26 @@ several path courses can be saved in one step as long as the palette is open. To
 > The **order and structure** within the Excel file is fixed and serves as basis for the object calculation and creation. Therefor it has to **be kept unchanged** and only cells with a **simple value** but none with **formulas or references** can be modified. Otherwise the execution of the script will throw errors or even no longer work at all
 
 Modifying the initial general parameters of the wall components for each individual segment in the Excel file. Similar to the palette structure of the SavePoints PythonPart the can be found in the **General wall parameters** and  **Component parameters** section
+
+<img src = "./docs/Excel_WallParam.png" width = 150/>               <img src = "./docs/Excel_ComponentParam.png" width = 250/>
+
+- required **height** and **camber** of segments
+- wall **equipment**, currently either "door" or "passage"
+- **dimensions** of the pire, pile, plinth and panel **geometry** like thickness or profile
+- location and quantity of **glas panels** either as single or sequence of numbers or a mix of both separated by comma
+
+    <img src = "./docs/Glas_Panel.png" width = 150/>    
+
+    counting starts at the **bottom** and all numbers in a sequence are replaced with **one** glas field
+- supress the **creation** of individual segments in the first column
+To recalculate the Excel file with the adjusted and modified values it has to be **Saved** in pressing the respective button
+
+> ⚠️ **IMPORTANT**:
+> Even if no adjustments are necessary, the Execl file has to be **opened** and **saved** to carry out the internal calculation. Otherwise the next steps are not possible
+
+##
+### Step VI: PythonPart CreateWallComponents
+
+
 
 
