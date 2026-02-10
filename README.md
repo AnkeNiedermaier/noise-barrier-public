@@ -66,6 +66,7 @@ In general, all installed PythonParts can be found in the **Library palette**, n
 ### Step I: PythonPart DrawPath
 
 <img src = "./docs/PP_DrawPath.png" width = 150/><br>
+
 Calculation of the inital noise barrier path concurrent to the existing route course polyline
 - selection of the **terrain** (3D surface) and the **route axis** (3D polyline) in the given order
 - input of the desired values for **path distance** from axis and **lenght** of the single segments
@@ -133,7 +134,7 @@ several path courses can be saved in one step as long as the palette is open. To
 
 Modifying the initial general parameters of the wall components for each individual segment in the Excel file. Similar to the palette structure of the SavePoints PythonPart the can be found in the **General wall parameters** and  **Component parameters** section
 
-<img src = "./docs/Excel_WallParam.png" width = 150/>               <img src = "./docs/Excel_ComponentParam.png" width = 250/>
+<img src = "./docs/Excel_WallParam.png" width = 200/>               <img src = "./docs/Excel_ComponentParam.png" width = 300/>
 
 - required **height** and **camber** of segments
 - wall **equipment**, currently either "door" or "passage"
@@ -149,9 +150,26 @@ To recalculate the Excel file with the adjusted and modified values it has to be
 > ⚠️ **IMPORTANT**:
 > Even if no adjustments are necessary, the Execl file has to be **opened** and **saved** to carry out the internal calculation. Otherwise the next steps are not possible
 
+The following **steps VI  - VIII** are independend an can be skipt if not necessary for example if only a 2D drawing of the noise barrier is requested. Tier order also does not count
+
 ##
 ### Step VI: PythonPart CreateWallComponents
 
+<img src = "./docs/PP_CreateWall.png" width = 150/><br>
 
+Create a 3D model of the noise barrier with all ist components based on the Excel file
+- Pire - Pile, Plinth - Panel
+    - setting of the **format** (pen, stroke, color, layer, texture) for each kind of component
+    - determin their **material parameters** for weight calculation
+- Create objects
+    - setting of the **format** (color, layer) for the numering
+    - selection of the **Excel file** and sheet
 
+As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
+>**HINT**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation, also new sources for route and terrain can be choosen<br>
+##
+### Step VII: PythonPart DrawWallElevations
 
+<img src = "./docs/PP_DrawElevations.png" width = 150/><br>
+
+Modification of the path
