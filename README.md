@@ -162,14 +162,45 @@ Create a 3D model of the noise barrier with all ist components based on the Exce
     - setting of the **format** (pen, stroke, color, layer, texture) for each kind of component
     - determin their **material parameters** for weight calculation
 - Create objects
-    - setting of the **format** (color, layer) for the numering
+    - setting of the **format** (color, layer) for the numbering
     - selection of the **Excel file** and sheet
 
 As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
->**HINT**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation, also new sources for route and terrain can be choosen<br>
+>**HINT**: in choosing another Excel file or sheet, several noise barrier models can be created at once as the palette stays open
 ##
 ### Step VII: PythonPart DrawWallElevations
 
 <img src = "./docs/PP_DrawElevations.png" width = 150/><br>
 
-Modification of the path
+Draw a **2D longitudinal elevation** of the noise barrier together with a dynamic parameter table based on the Excel file
+- Pire - Pile, Plinth - Panel
+    - setting of the **format** (pen, stroke, color, layer, filling) for each kind of component
+- Content table
+    - setting if the table should be shown and definition of its **layer**
+    - determin **total number** and **parameter** for each **row** of the dynamic table
+- Content graphic
+    - setting wich **lables** should be shown and definition of their **layer**
+    - setting of the creation and **format** (pen, stroke, color, layer) for each possible **curve** and if they should be shown
+- Create objects
+    - selection of the **Excel file** and sheet
+
+Once file and sheet are selected, in clicking the **Input** button for the placement point a **preview** of the elevation is shown at the crosshair and can be placed with another click in the viewport. It can be adapted in content and appearance. With the **Create** button the elevation of the noise barrier is created as 2D drawing in the current active drawing file
+>**HINT**: as the palette stays open, it is possible to draw several elevations or the same one with different content / placement in choosing another placement point,  or chosing another Excel file or sheet and clicking the **Input** button again
+##
+### Step VIII: PythonPart DrawWallSections
+
+<img src = "./docs/PP_DrawSections.png" width = 150/><br>
+
+Draw one or several 2D sections of the individual of the noise barrier segments together with compact parameter table and the related dimensioning
+- Pire - Pile, Plinth - Panel
+    - setting of the **format** (pen, stroke, color, layer, filling) for each kind of component
+- Table - Dimesioning
+    - setting if the table should be shown and definition of its **layer**
+    - determin **total number** and **parameter** for each **row** of the dynamic table
+- Content graphic
+    - setting wich **lables** should be shown and definition of their **layer**
+    - setting of the creation and **format** (pen, stroke, color, layer) for each possible **curve** and if they should be shown
+- Create objects
+    - selection of the **Excel file** and sheet
+
+Once
