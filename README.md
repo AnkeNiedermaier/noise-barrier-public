@@ -184,23 +184,28 @@ Draw a **2D longitudinal elevation** of the noise barrier together with a dynami
 - Create objects
     - selection of the **Excel file** and sheet
 
-Once file and sheet are selected, in clicking the **Input** button for the placement point a **preview** of the elevation is shown at the crosshair and can be placed with another click in the viewport. It can be adapted in content and appearance. With the **Create** button the elevation of the noise barrier is created as 2D drawing in the current active drawing file
+Once file and sheet are selected, in clicking the **Input** button for the placement point a **preview** of the elevation is shown at the crosshair and can be placed with another click in the viewport. It can be adapted in content and appearance. With the **Create** button the elevation of the noise barrier is created as **2D drawing** in the current active drawing file
 >**HINT**: as the palette stays open, it is possible to draw several elevations or the same one with different content / placement in choosing another placement point,  or chosing another Excel file or sheet and clicking the **Input** button again
 ##
 ### Step VIII: PythonPart DrawWallSections
 
 <img src = "./docs/PP_DrawSections.png" width = 150/><br>
 
-Draw one or several 2D sections of the individual of the noise barrier segments together with compact parameter table and the related dimensioning
+Draw one or several **2D sections** of the individual noise barrier segments together with compact parameter tables and the related dimensioning
 - Pire - Pile, Plinth - Panel
     - setting of the **format** (pen, stroke, color, layer, filling) for each kind of component
 - Table - Dimesioning
-    - setting if the table should be shown and definition of its **layer**
+    - setting of the **format** (pen, stroke, color, layer) and if the components should be shown
     - determin **total number** and **parameter** for each **row** of the dynamic table
 - Content graphic
-    - setting wich **lables** should be shown and definition of their **layer**
-    - setting of the creation and **format** (pen, stroke, color, layer) for each possible **curve** and if they should be shown
+    - setting of the creation and **format** (pen, stroke, color, layer) for the terrain and gradient **curves** and if they should be shown
 - Create objects
     - selection of the **Excel file** and sheet
+    - determin the segment (pile) **numbers** sections should be drawn from
+    - define the **distance** at which they are placed
 
-Once
+Similar to the elevation drawing, once file, sheet and pile numbers are selected, in clicking the **Input** button for the placement point a **preview** of the them is shown at the crosshair and can be placed with another click in the viewport. It can be still be adapted untill pressing the **Create** button. With this the section(s) of the choosen noise barrier segments are created as **2D drawings** in the current active drawing file
+>**HINT**: it is possible to draw several or even all segment sections at once, as for the numbering both single or sequences of number can be set and also execute the creation several times for different noise barriers
+
+##
+### Step IX: Noise barrier evaluation
