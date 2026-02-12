@@ -214,7 +214,7 @@ Similar to the elevation drawing, once file, sheet and pile numbers are selected
 > The evaluation is only possible for **3D objects** created with the **CreateWallComponents** PythonPart
 
 Generate **reports** or **Excel schedules** of the noise barrier model components and the assigned paremeters
-<img src = "./docs/Eval_Report.png" width = 200/>               <img src = "./docs/Eval_Excel.png" width = 200/>
+<img src = "./docs/Eval_Excel.png" width = 200/>               <img src = "./docs/Eval_Report.png" width = 200/>
 - activation of the relevant drawing file(s) and layers
 - call the **Reports** or **Export Attributes** function from the ActionBar
 - choosing of the desired ***.rdlc file** (per component or per segment)
@@ -222,6 +222,7 @@ Generate **reports** or **Excel schedules** of the noise barrier model component
 
 Depending on the executed function either an **ALLPLAN report** or an **Excel file** is created and can be saved for further use. It evaluates both geometrie and additional attributes like material values
 >**HINT**: all report templates contain a **zoom and highlight** option to identify the location of the listed objects in the drawing file in clicking on the graphic or grey box here
+
 <img src = "./docs/Zoom_Picture.png" width = 200/>               <img src = "./docs/Zoom_Box.png" width = 200/>
 #
 ## Table of noise barrier component attributes
