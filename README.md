@@ -27,8 +27,8 @@ If the installation was successfull, the individual PythonParts of the **NoiseBa
 in the ALLPLAN Library:
 `Office` → `ALLPLAN GmbH` → `NoiseBarrierTool`
 The ***.rdlc** files are also stored in the office folder:
-`Office` → `Reports` → `NoiseBarrierTool`
-Besides the library, the tools PythonParts can also be found in the ActionBar in a newly created task area **NoiseBarrierTool** inside the task **Plug-ins**.
+`Office` → `Reports`→ `deu / eng` → `NoiseBarrierTool`
+Besides the library, the individual PythonParts of the tool can also be found in the ActionBar in a newly created task area **NoiseBarrierTool** inside the task **Plug-ins**.
 
 
 ## Preparation
@@ -150,7 +150,7 @@ To recalculate the Excel file with the adjusted and modified values it has to be
 > ⚠️ **IMPORTANT**:
 > Even if no adjustments are necessary, the Execl file has to be **opened** and **saved** to carry out the internal calculation. Otherwise the next steps are not possible
 
-The following **steps VI  - VIII** are independend an can be skipt if not necessary for example if only a 2D drawing of the noise barrier is requested. Tier order also does not count
+The following **steps VI  - VIII** are independend an can be skipt if not necessary for example if only a 2D drawing of the noise barrier is requested. Their order also does not count
 
 ##
 ### Step VI: PythonPart CreateWallComponents
@@ -165,7 +165,7 @@ Create a 3D model of the noise barrier with all ist components based on the Exce
     - setting of the **format** (color, layer) for the numbering
     - selection of the **Excel file** and sheet
 
-As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
+As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies but with all relevant parameters as **attributes** in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
 >**HINT**: in choosing another Excel file or sheet, several noise barrier models can be created at once as the palette stays open
 ##
 ### Step VII: PythonPart DrawWallElevations
@@ -209,3 +209,37 @@ Similar to the elevation drawing, once file, sheet and pile numbers are selected
 
 ##
 ### Step IX: Noise barrier evaluation
+
+> ⚠️ **IMPORTANT**:
+> The evaluation is only possible for **3D objects** created with the **CreateWallComponents** PythonPart
+
+Generate reports or Excel schedules of the noise barrier model components and the assigned paremeters
+- activation of the relevant drawing file(s) and layers
+- call the **Reports** or **Export Attributes** function from the ActionBar
+- choosing of the desired ***.rdlc file** (per component or per segment)
+- selection of the objects to be evaluated
+
+Depending on the function either an Allplan report or an Excel file is created and can be saved for further use. It evaluates both geometrie and additional attributes like material values
+>**HINT**: both report templates contain a zoom and highlight function to identify the location of the listed objects in the drawing file in clicking on the graphic or grey box here
+
+#
+## noise barrier attributes
+
+
+| component    | attribute | value / remark  |
+| -------- | ------- | ------- |
+| **pire**  | Naming   | NoiseBarrier_footing | 
+|   | Name     | Footing pire-no. x |
+|      | IfcEntity    | IfcFooting |
+|   | Total length     | lenght in [m] |
+|      | Total_weight    | based on material density |
+|   | Number     | segment number |
+|      | Object_name    | NoiseBarrier_object |
+| **pile**  | Naming   | NoiseBarrier_pile | 
+|   | Name     | Pile-no. x |
+|      | IfcEntity    | IfcColumn |
+|      | Profile name    | section profile name |
+|   | Total length     | height in [m] |
+|      | Total_weight    | based on material density |
+|   | Number     | segment number |
+|      | Object_name    | NoiseBarrier_object |
