@@ -1,4 +1,6 @@
 # NoiseBarrierTool
+FOR GERMAN VERSION SEE [BELOW](#Anleitung-NoiseBarrierTool)!
+
 The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-related creation of noise barriers both as 3D objects and 2D drawings. Bais for the creation is a 3D surface (polyhedron) as terrain and a 3D polyline as route axis. Each step of the complete workflow can be executed with an individual PythonPart:
 - **DrawPath** to determine the initial path
 - **RecalculatePath** to aligne a modified path
@@ -23,9 +25,9 @@ Alternatively, the corresponding ***.allep** package can be downloaded from the 
 At least the version 2026 is needed to install the PythonPart.
 
 ## Installed PythonPart Scripts
-If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierParameters.xlsx** can be found
+If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierCalculation.xlsx** can be found
 in the ALLPLAN Library:
-`Office` → `ALLPLAN GmbH` → `NoiseBarrierTool`
+`Library` →`Office` → `ALLPLAN GmbH` → `NoiseBarrierTool`
 The ***.rdlc** files are also stored in the office folder:
 `Office` → `Reports`→ `deu / eng` → `NoiseBarrierTool`
 Besides the library, the individual PythonParts of the tool can also be found in the ActionBar in a newly created task area **NoiseBarrierTool** inside the task **Plug-ins**.
@@ -263,3 +265,5 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 |      | Number of times    | number of panels |
 |   | View area     | complete panel area [m²] |
 |      | Object_name    | NoiseBarrier_object |
+
+# Anleitung NoiseBarrierTool
