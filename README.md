@@ -267,3 +267,11 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 |      | Object_name    | NoiseBarrier_object |
 
 # Anleitung NoiseBarrierTool
+
+Das aus einzelnen PythonParts bestehende **NoiseBarrierTool** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzuug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
+- **DrawPath** to determine the initial path
+- **RecalculatePath** to aligne a modified path
+- **SavePathPoints** to save the geometry and object parameters
+- **CreateWallComponents** to create a 3D model of the noise barrier
+- **DrawWallElevations** to create 2D longitudinal views of the noise barrier
+- **DrawWallSection** to create 2D sections of the noise barrier piles
