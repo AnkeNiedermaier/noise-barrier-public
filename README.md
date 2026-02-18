@@ -259,7 +259,7 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 |   | Number     | x.x (number.total number) |
 |      | Object_name    | NoiseBarrier_object_part |
 | **panel group**  | Naming   | Panel-group-no. x | 
-|   | Name     | Panel--group-no. x |
+|   | Name     | Panel-group-no. x |
 |      | IfcEntity    | IfcElementAssembly |
 |   | Number     | segment number |
 |      | Number of times    | number of panels |
@@ -268,10 +268,10 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 
 # Anleitung NoiseBarrierTool
 
-Das aus einzelnen PythonParts bestehende **NoiseBarrierTool** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzuug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
-- **DrawPath** to determine the initial path
-- **RecalculatePath** to aligne a modified path
-- **SavePathPoints** to save the geometry and object parameters
-- **CreateWallComponents** to create a 3D model of the noise barrier
-- **DrawWallElevations** to create 2D longitudinal views of the noise barrier
-- **DrawWallSection** to create 2D sections of the noise barrier piles
+Das aus einzelnen PythonParts bestehende **NoiseBarrierTool** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
+- **DrawPath** um den initialen Pfadverlauf festzulegen
+- **RecalculatePath** zur Neuausrichtung eines geänderten Pfadverlaufs
+- **SavePathPoints** zum abspeichern der Geometrie und der Objektparameter
+- **CreateWallComponents** zur Erstellung eines 3D Modells der Lärmschutzwand
+- **DrawWallElevations** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
+- **DrawWallSection** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
