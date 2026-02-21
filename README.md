@@ -1,5 +1,62 @@
+# LSW Planung
+FOR ENGLISH VERSION SEE [BELOW](#NoiseBarrierTool)!
+
+Das aus einzelnen PythonParts bestehende Tool **LSW Planung(NoiseBarrierTool)** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
+- **Pfadverlauf zeichnen(DrawPath)** um den initialen Pfadverlauf festzulegen
+- **Pfadverlauf anpassen(RecalculatePath)** zur Neuausrichtung eines geänderten Pfadverlaufs
+- **Pfadpunkte speichern(SavePathPoints)** zum abspeichern der Geometrie und der Objektparameter
+- **Wandobjekte erstellen(CreateWallComponents)** zur Erstellung eines 3D Modells der Lärmschutzwand
+- **Wandabwicklung zeichnen(DrawWallElevations)** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
+- **Wandschnitte zeichnen(DrawWallSection)** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
+
+<img src = "./docs/NoiseBarrierContent.png" width = 450/>
+
+Die Einzelschritte des Workflows sind zwar miteinander verbunden, können aber unabhängig voneinander ausgeführt werden. Daher lässt sich das Tool auch generell zur Berechnung von **Pfadverläufe in einem Gelände** verwenden, die zur Platzierung beliebiger Objekte, beispielsweise mit der ALLPLAN Funktion **Kopieren entlang beliebigem Pfad** dienen.
+
+
+Ein wesentlicher Bestandteil des Tool ist die Excel Datei  **LSWParameter.xlsx**. In ihr werden alle Parameter und Kennwerte der Lärmschutzwand gespeichert und (neu) berechnet. Jedes einzelne Segment der Gesamtwand lässt sich darin individuell anpassen. Sie lässt sich aber auch zum Auslesen von Koordinaten- und Geometriewerten nutzen, die anschließend beispielsweise zur Mengen- und Kostenkalkulation verwendet werden können.
+Als weiterer Bestandteil des Tools werden zudem einige ***.rdlc  Dateien** installiert. Damit können die 3D Objekte sowohl in ALLPLAN Reports ausgewertet, als auch direkt nach Excel übergeben werden.
+
+## Installation
+Das PythonPart **LSW Planung(NoiseBarrierTool)** lässt sich dierkt über den Plugin Manager in ALLPLAN installieren.
+
+Alternativ kann die ***.allep** Datei von der zugehörigen [Release Website](https://github.com/AnkeNiedermaier/noise-barrier-public/releases) direkt heruntergeladen werden. Bei ***.allep** Dateien handelt es sich um ein internes ALLPLAN Setup, das sich per Drag und Drop in das Programmfenster installieren lässt.
+
+Voraussetzung zur Installation des PythonParts ist die ALLPLAN Version 2026.
+
+## Installierte PythonPart Skripte
+Nach erfolgreicher Installation sind die einzelnen PythonParts des Tools **LSW Planung(NoiseBarrierTool)** zusammen mit der Ecxel Datei **LSWParameter.xlsx** in der ALLPLAN Bibliothek zu finden:
+`Std` →`Library` → `ALLPLAN GmbH` → `LSW Planung(NoiseBarrierTool)`
+Die ***.rdlc** Dateien werden ebenfalls im Std Ordner abgelegt:
+`Std` → `Reports`→ `deu / eng` → `LSW Planung / NoiseBarrierTool`
+Die einzelnen PythonParts des Tools werden neben der Bibliothek auch in einem neu angelegten Aufgabenbereich **LSW Planung** in der Aufgabe **Plug-in** in die ActionBar aufgenommen.
+
+## Vorbereitung
+Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzüge** und zum anderen zusammenhängende geschlossene **3D Flächen** in Form eines Polyhedrons.
+
+<img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
+
+Es kann daher im Vorfeld erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** un **Mantel** verwenden..
+
+<img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
+
+Zur Vereinigung separater Einzelflächen kann der **Boolsche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
+
+## Workflow
+
+Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, angefangen von der ersten Pfadberechnung bis hin zur AUswertung einzelnen Wandkomponenten, setzt sich aus mehreren Einzelschritten zusammen. Sie werden überwiegen durch eines der individuellen PythonParts repräsentiert:
+- **Definition** des initialen Pfadverlaufs
+- **Modifikation** zur Anpassung an örtliche Gegebenheiten
+- **Neuberechnung** des modifizierten Pfadverlauf
+- **Abspeichern** der Koordinaten und Objektparameter
+- **Anpassung** individueller Wandabschnitte
+- **Erstellung** des 3D Models der Lärmschutzwand
+- **Zeichnen** von Ansichten und Schnitten
+- **Auswerten** der 3D Objekte
+
+Die einzelnen Schritte lassen sich zwar unabhängig voneinander und nicht zwangsläufig direkt nacheinander ausführen, die initiale Definition eines Pfadverlaufs sowie das Abspeichern in der Excel Datei sind allerdings zwingend, um 3D Modelle oder 2D Zeichnungen erstellen zu können. Es wird daher empfohlen, sich an die hier beschriebene Reihenfolge zu halten, nicht notwendige Zwischenschritte können bei Bedarf entfallen.
+
 # NoiseBarrierTool
-FOR GERMAN VERSION SEE [BELOW](#Anleitung-NoiseBarrierTool)!
 
 The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-related creation of noise barriers both as 3D objects and 2D drawings. Bais for the creation is a 3D surface (polyhedron) as terrain and a 3D polyline as route axis. Each step of the complete workflow can be executed with an individual PythonPart:
 - **DrawPath** to determine the initial path
@@ -11,7 +68,7 @@ The **NoiseBarrierTool** consist of individual PythonParts and enables the axis-
 
 <img src = "./docs/NoiseBarrierContent.png" width = 450/>
 
-Altough related to each other, the workflow steps are more or less idependent. Therefor besides creating noise barrierss, the tool can also be used to calculate **route courses in a terrain** as placement basis for any kind of object. The ALLPLAN function **Copy along path** for example serves this purpose.
+Altough related to each other, the workflow steps are more or less idependent. Therefor besides creating noise barriers, the tool can also be used to calculate **route courses in a terrain** as placement basis for any kind of object. The ALLPLAN function **Copy along path** for example serves this purpose.
 
 
 Another essential component of the tool is the Excel file **NoiseBarrierParameters.xlsx**. All parameters and key values of the noise barrier are saved and (re)calculated here.The file also enables the individual adaption and modification of each segment. In addition it can be used to retrieve coordinates and geometric values for further use, for example as basis for quantity or cost calculation.
@@ -25,11 +82,11 @@ Alternatively, the corresponding ***.allep** package can be downloaded from the 
 At least the version 2026 is needed to install the PythonPart.
 
 ## Installed PythonPart Scripts
-If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierCalculation.xlsx** can be found
+If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierParameter.xlsx** can be found
 in the ALLPLAN Library:
-`Library` →`Office` → `ALLPLAN GmbH` → `NoiseBarrierTool`
+`Office` →`Library` → `ALLPLAN GmbH` → `LSW Planung (NoiseBarrierTool)`
 The ***.rdlc** files are also stored in the office folder:
-`Office` → `Reports`→ `deu / eng` → `NoiseBarrierTool`
+`Office` → `Reports`→ `deu / eng` → `LSW Planung / NoiseBarrierTool`
 Besides the library, the individual PythonParts of the tool can also be found in the ActionBar in a newly created task area **NoiseBarrierTool** inside the task **Plug-ins**.
 
 
@@ -50,7 +107,7 @@ To union individual areas, the **Boolean operator** of the same name can be used
 The complete workflow with all the options the tool offers, from drawing the inital path up to the evaluation of the wall components, contains several steps. Most of them are also represented by one of the individual PythonParts:
 - **defining** the inital noise barrier path
 - **modifying** it to fit the local conditions
-- **recalculating** the the modified path
+- **recalculating** the modified path
 - **saving** coordinates and object parameters
 - **adjusting** individual wall segments
 - **creating** 3D models of the noise barrier
@@ -266,12 +323,3 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 |   | View area     | complete panel area [m²] |
 |      | Object_name    | NoiseBarrier_object |
 
-# Anleitung NoiseBarrierTool
-
-Das aus einzelnen PythonParts bestehende **NoiseBarrierTool** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
-- **DrawPath** um den initialen Pfadverlauf festzulegen
-- **RecalculatePath** zur Neuausrichtung eines geänderten Pfadverlaufs
-- **SavePathPoints** zum abspeichern der Geometrie und der Objektparameter
-- **CreateWallComponents** zur Erstellung eines 3D Modells der Lärmschutzwand
-- **DrawWallElevations** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
-- **DrawWallSection** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
