@@ -1,7 +1,7 @@
 # LSW Planung
 FOR ENGLISH VERSION SEE [BELOW](#NoiseBarrierTool)!
 
-Das aus einzelnen PythonParts bestehende Tool **LSW Planung(NoiseBarrierTool)** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
+Das aus einzelnen PythonParts bestehende Tool **LSW Planung** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
 - **Pfadverlauf zeichnen(DrawPath)** um den initialen Pfadverlauf festzulegen
 - **Pfadverlauf anpassen(RecalculatePath)** zur Neuausrichtung eines geänderten Pfadverlaufs
 - **Pfadpunkte speichern(SavePathPoints)** zum abspeichern der Geometrie und der Objektparameter
@@ -36,7 +36,7 @@ Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzü
 
 <img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
 
-Es kann daher im Vorfeld erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** un **Mantel** verwenden..
+Es kann daher im Vorfeld erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
 
 <img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
 
@@ -44,7 +44,7 @@ Zur Vereinigung separater Einzelflächen kann der **Boolsche Operator** **Körpe
 
 ## Workflow
 
-Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, angefangen von der ersten Pfadberechnung bis hin zur AUswertung einzelnen Wandkomponenten, setzt sich aus mehreren Einzelschritten zusammen. Sie werden überwiegen durch eines der individuellen PythonParts repräsentiert:
+Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, angefangen von der ersten Pfadberechnung bis hin zur Auswertung einzelnen Wandkomponenten, setzt sich aus mehreren Einzelschritten zusammen. Sie werden überwiegen durch eines der individuellen PythonParts repräsentiert:
 - **Definition** des initialen Pfadverlaufs
 - **Modifikation** zur Anpassung an örtliche Gegebenheiten
 - **Neuberechnung** des modifizierten Pfadverlauf
@@ -55,6 +55,31 @@ Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, a
 - **Auswerten** der 3D Objekte
 
 Die einzelnen Schritte lassen sich zwar unabhängig voneinander und nicht zwangsläufig direkt nacheinander ausführen, die initiale Definition eines Pfadverlaufs sowie das Abspeichern in der Excel Datei sind allerdings zwingend, um 3D Modelle oder 2D Zeichnungen erstellen zu können. Es wird daher empfohlen, sich an die hier beschriebene Reihenfolge zu halten, nicht notwendige Zwischenschritte können bei Bedarf entfallen.
+
+Grundsätzlich könne alle installierten PythonParts, unabhängig davon ob zusätzlich ein ActionBar Eintrag erstellt wird, über die **Palette Bibliothek** aufgerufen werden. Gestartet werden sie entweder über einen **Doppelklick** auf das entsprechende Ikon, oder per **Drag und Drop** in eines der offenen Fenster. Damit wird die zugehörige Eigenschaftenpalett eingeblendet und das hinterlegte Skript ausgeführt.
+
+>**HINWEIS**: Jede PythonPart Palette enthält in der linken unteren Ecke 3 allgemeine Schaltflächen **Als Favorit speichern**, **Favorit laden** und **Auf Grundeinstellungen zurücksetzen**. Sie dienen dazu, individuelle Vorgaben und Werte für die einzelnen Paletten zu speichern und wieder einzulesen. Das ist vor allem bei den Objekt- und Wandparametern hilfreich, die relativ viele Eingabefelder enthalten.
+
+<img src = "./docs/Palette_Favorites.png" width = 150/><br>
+
+##
+### Schritt I: PythonPart Pfadverlauf zeichnen
+
+<img src = "./docs/PP_DrawPath.png" width = 150/><br>
+
+Berechnung des initialen Pfadverlaus parallel zum zu Grunde liegenden Polygonzug der Referenzachse
+
+- Auswahl von **Gelände** (3D Fläche) und **Referenzachse** (3D Polylgonzug) in der durch das PythonPart vorgegeben Reihenfolge
+- Eingabe der erforderlichen Werte für den **Abstand** zur Achse und die **Länge** der einzelnen Segmente
+- Festlegung des zu übernehmenden Teils der Referenzachse, entweder **komplett** oder einen durch **Anfangs- und Enpunkt** definierten Teilabschnitt
+- Festlegung der **Berechnungsrichtung**, wahlweise auf- oder absteigend
+- Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
+
+
+
+Once terrain and route are selected, a **preview**  is shown and can be adapted in changing the palette values. With the **Create** button the inital path is drawn as element group of a 3D polyline and 2D text in the current active drawing file.<br>
+>**HINWEIS**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation, also new sources for route and terrain can be choosen<br>
+
 
 # NoiseBarrierTool
 
@@ -117,7 +142,7 @@ The complete workflow with all the options the tool offers, from drawing the ini
 Altgough they are executed separte and not necessarily sequently, initial definition and saving in the Excel file are mandatory to create objects or drawings in ALLPLAN. Therefor it is recommended to follow the described order and skip not needed steps inbetween the workflow.
 
 In general, all installed PythonParts can be found in the **Library palette**, no matter if an additional ActionBar entry is created or not. They are started either with a **double-click** on the icon or per **Drag and Drop** into the viewport. This shows the corresponding Properties palette and executes the underlying skripts.
->**HINT**: the PythonPart palette contains the 3 common buttons **Save as a favorite**, **Load favorite** and **Restore basic settings** in the left bottom corner. They can be used to store and reread individual entered values which is mainly usefull for the wall and object parameters
+>**HINT**: the PythonPart palette contains the 3 common buttons **Save as a favorite**, **Load favorite** and **Restore basic settings** in the left bottom corner. They can be used to store and reread individual entered values which is mainly usefull for the wall and object parameters.
 
 <img src = "./docs/Palette_Favorites.png" width = 150/><br>
 
