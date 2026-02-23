@@ -76,9 +76,36 @@ Berechnung des initialen Pfadverlaus parallel zum zu Grunde liegenden Polygonzug
 - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
 
 
+Sobald Gelände und Referenzachse ausgewählt sind, wird im Teilbild eine **Vorschau** des Pfadverlaufs angezeigt, die sich durch ändern der Werte in der Palette anpassen lässt. Durch einen Klick auf die **Erzeugen** Schaltfläch werden der Pfadverlauf als Elementgruppe aus 3D Polygonzug und 2D Text im aktiven Teilbild erstellt.<br>
+>**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich in einem Zug mehrere Pfadverläufe mit unterschiedlichen Abständen und Segmentlängen nacheinander eingeben. Die Auswahl alternativer Objekte für Gelände und Referenzachse ist ebenfalls möglich<br>
 
-Once terrain and route are selected, a **preview**  is shown and can be adapted in changing the palette values. With the **Create** button the inital path is drawn as element group of a 3D polyline and 2D text in the current active drawing file.<br>
->**HINWEIS**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation, also new sources for route and terrain can be choosen<br>
+##
+### Schritt II: Manuelle Pfadanpassung
+Direkte Modifikation des Pfadverlauf (Polygon) in ALLPLAN mit den allgemeinen hierfür vorhandenen Funktionen
+- verschieben einzelnen Polygonpunkte
+- einfügen zusätzlicher Punkte über **Linie knicken**
+- entfernen von Punkten durch ziehen auf einen Nachbarpunkt
+- ...
+
+<img src = "./docs/Poly_Modi.png" width = 250/><br>
+
+> ⚠️ **ACHTUNG**:
+> Damit die weiteren Workflowschritte problemlos ausgeführt werden können ist es erforderlich, dass auch nach erfolgter Modifikation **ein** zusammenhängender Polygonzug verbeleibt. Entstandene Einzelsegmente müssen daher falls notwendig mit der Funktion **Linien zu Polygonen verbinden** wieder zusammengesetzt werden
+
+##
+### Schritt III: PythonPart Pfadverlauf anpassen
+
+<img src = "./docs/PP_RecalcPath.png" width = 150/><br>
+Erneute Angleichung des modifizierten Pfadverlaufs an die Geländehöhe oder Zuweisung einer anderen Segmentierung in Teilbereichen des (modifizierten) Pfadverlaufs. Die Vorgehensweise entspricht weitestgehend derjenigen in Schritt I
+
+
+- selection of the **terrain** (3D surface) and the **route axis** (3D polyline)
+- input of the desired **adoption kind**, either height adjustment or new calculation
+- only with the second kind definition of the **part** to be recalculated, the desired **direction** and value for the **segment length**
+- setting of the path and numbering **format** (pen, stroke, color, layer)
+The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
+>**HINTS**: with the adoption kind adjust height the path course as such remains unchanged as only the Z value will be adapted<br>
+successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process
 
 
 # NoiseBarrierTool
@@ -160,6 +187,7 @@ Calculation of the inital noise barrier path concurrent to the existing route co
 
 Once terrain and route are selected, a **preview**  is shown and can be adapted in changing the palette values. With the **Create** button the inital path is drawn as element group of a 3D polyline and 2D text in the current active drawing file.<br>
 >**HINT**: as the palette stays open, it is possible to draw several paths at once with different distance and segmentation, also new sources for route and terrain can be choosen<br>
+
 ##
 ### Step II: Path modification
 Modification of the path polyline directly in the ALLPLAN viewport with the common tools and functions
