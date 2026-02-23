@@ -76,7 +76,7 @@ Berechnung des initialen Pfadverlaus parallel zum zu Grunde liegenden Polygonzug
 - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
 
 
-Sobald Gelände und Referenzachse ausgewählt sind, wird im Teilbild eine **Vorschau** des Pfadverlaufs angezeigt, die sich durch ändern der Werte in der Palette anpassen lässt. Durch einen Klick auf die **Erzeugen** Schaltfläch werden der Pfadverlauf als Elementgruppe aus 3D Polygonzug und 2D Text im aktiven Teilbild erstellt.<br>
+Sobald Gelände und Referenzachse ausgewählt sind, wird im Teilbild eine **Vorschau** des Pfadverlaufs angezeigt, die sich durch ändern der Werte in der Palette anpassen lässt. Durch einen Klick auf die **Erzeugen** Schaltfläch wird der Pfadverlauf als Elementgruppe aus 3D Polygonzug und 2D Text im aktiven Teilbild erstellt.<br>
 >**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich in einem Zug mehrere Pfadverläufe mit unterschiedlichen Abständen und Segmentlängen nacheinander eingeben. Die Auswahl alternativer Objekte für Gelände und Referenzachse ist ebenfalls möglich<br>
 
 ##
@@ -99,13 +99,13 @@ Direkte Modifikation des Pfadverlauf (Polygon) in ALLPLAN mit den allgemeinen hi
 Erneute Angleichung des modifizierten Pfadverlaufs an die Geländehöhe oder Zuweisung einer anderen Segmentierung in Teilbereichen des (modifizierten) Pfadverlaufs. Die Vorgehensweise entspricht weitestgehend derjenigen in Schritt I
 
 
-- selection of the **terrain** (3D surface) and the **route axis** (3D polyline)
-- input of the desired **adoption kind**, either height adjustment or new calculation
-- only with the second kind definition of the **part** to be recalculated, the desired **direction** and value for the **segment length**
-- setting of the path and numbering **format** (pen, stroke, color, layer)
-The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
->**HINTS**: with the adoption kind adjust height the path course as such remains unchanged as only the Z value will be adapted<br>
-successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process
+- Auswahl von **Gelände** (3D Fläche) und **Referenzachse** (3D Polygonzug)
+- Angabe der **Art der Anpassung**, entweder Höhenangleichung oder Neuberechnung
+- im zweiten Falle Festlegung des **Bereichs** der neu berechnet werden soll, einschließlich **Berechnun gsrichtung** und (neuer) **Segmentlänge**
+- Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
+Der modifizierte Pfadverlauf wird als **Vorschau** angezeigt und kann erneut angepasst werden. Mit einem Klick auf die **Erzeugen** Schaltfläche wird er analog zum initialen Verlauf im Teilbild erstellt, wobei dieser durch AKtivieren der Option **Ursprungspfad löschen** gleichzeitig entfernt werden kann.<br>
+>**HINWEISE**: bei der Anpassungsart Höhenangleichung bleibt der Pfadverlauf als solche unverändert, es erfolgt lediglich eine Anpassung der Z Koordinaten der Einzelpunkte<br>
+es lassen sich in einem Zuge unterschiedliche Anpassungen und Neuberechnungen eines oder auch mehrere Pfade nacheinander durchführen, so lange die Palette geöffnet ist. Darüber hinaus lässt sich auch der Schritt III merhmals in einem sich wiederholenden sequentiellen Prozess ausführen
 
 
 # NoiseBarrierTool
@@ -211,7 +211,7 @@ Readjustment of the modified path to the terrain height or assignment of differe
 - input of the desired **adoption kind**, either height adjustment or new calculation
 - only with the second kind definition of the **part** to be recalculated, the desired **direction** and value for the **segment length**
 - setting of the path and numbering **format** (pen, stroke, color, layer)
-The preview shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
+The **preview** shows the recalculated path course and can also be adapted again. With the **Create** button it is drawn similar to the initial one which therefor can be removed in checking the **Delete existing path** option.<br>
 >**HINTS**: with the adoption kind adjust height the path course as such remains unchanged as only the Z value will be adapted<br>
 successive adoptions of the same or another path can be taken at once as the palette stays open and also the whole step can be executed several times in a repetitive process
 
