@@ -101,11 +101,64 @@ Erneute Angleichung des modifizierten Pfadverlaufs an die Geländehöhe oder Zuw
 
 - Auswahl von **Gelände** (3D Fläche) und **Referenzachse** (3D Polygonzug)
 - Angabe der **Art der Anpassung**, entweder Höhenangleichung oder Neuberechnung
-- im zweiten Falle Festlegung des **Bereichs** der neu berechnet werden soll, einschließlich **Berechnun gsrichtung** und (neuer) **Segmentlänge**
+- im zweiten Falle Festlegung des **Bereichs** der neu berechnet werden soll, einschließlich **Berechnungsrichtung** und (neuer) **Segmentlänge**
 - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
+
 Der modifizierte Pfadverlauf wird als **Vorschau** angezeigt und kann erneut angepasst werden. Mit einem Klick auf die **Erzeugen** Schaltfläche wird er analog zum initialen Verlauf im Teilbild erstellt, wobei dieser durch AKtivieren der Option **Ursprungspfad löschen** gleichzeitig entfernt werden kann.<br>
 >**HINWEISE**: bei der Anpassungsart Höhenangleichung bleibt der Pfadverlauf als solche unverändert, es erfolgt lediglich eine Anpassung der Z Koordinaten der Einzelpunkte<br>
 es lassen sich in einem Zuge unterschiedliche Anpassungen und Neuberechnungen eines oder auch mehrere Pfade nacheinander durchführen, so lange die Palette geöffnet ist. Darüber hinaus lässt sich auch der Schritt III merhmals in einem sich wiederholenden sequentiellen Prozess ausführen
+
+##
+### Schritt IV: PythonPart Pfadpunkte speichern
+
+<img src = "./docs/PP_SavePoints.png" width = 150/><br>
+
+> ⚠️ **ACHTUNG**:
+> Es wird empfohlen, das Blatt und/oder die Excel Datei vorab zu kopieren und das Original unverändert zu lassen, so dass bei Bedarf wieder darauf zurückgegriffen werden kann
+
+Abspeichern des endgültigen Pfadverlaufs sowie der pauschalen Parameterwerte für Gesamtwand und Einzelobjekte in der mit dem Tool zur Verfügung gestellten **Excel Datei**. Die Palette enthält für jeden einzelnen Bereich eine eigene Registerkarte:
+- Grundlagen auswählen
+    - Auswahl von **Gelände** (3D Fläche), **Pfadverlauf** (3D Polygonzug) und **Referenzachse** (3D Polygonzug)
+    - Eingabe der Abstände der parallelen **Geländeverläufe** auf der Strecken- und Anliegerseite
+- Wandparameter einstellen
+    - Eingabe der intitialen die **Gesamtwand** betreffenden Parameter
+    - Auswahl der **Berechnungsmethode** für die Sockeloberkante
+- Objektparameter einstellen - Punkte speichern
+    - Eingabe der initialen die einzelnen **Wandobjekte** (Pfahl, Pfosten, Sockel, LSW Element) betreffenden Parameter
+    - Auswahl der **Excel Datei** und des Tabellenblatts
+
+Nach Auswahl der erforderlichen Berechnungsgrundlagen werden in einer **Vorschau** die parallelen Geländeverläufe sowie Lotlinien von den einzelnen Pfadpunkten auf die Referenzachse angezeigt. Mit einem Klick auf die Schalfläche **Speichern** werden alle Geometriewerte und Parameter in die Excel Datei geschrieben. Optional lassen sich zudem die Lotlinien in Hilfskonstruktion im aktiven Teilbild erstellen
+>**HINWEISE**: beim Schritt **Pfadpunkte speichern** lässt sich für die Wand- und Objektparameter im PythonPart nur jeweils **ein** globaler Wert eingeben. 
+Dieser kann anschließend individuell für jedes Einzelsegment in der **Excel Datei** angepasst werden
+Für sämtliche Wand- und Objektparameter sind bereits gängige Anfangswerte eingetragen, daher ist es nicht zwingend erforderlich, diese Registerkarten vollständig zu befüllen
+So lange die Palette geöffnet ist, können in einem Zug nacheinander mehrere Pfadverläufe gespeichert werden. Allerdings ist es dazu erforderlich, bereits im Vorfeld das vorhandene **Tabellenblatt mit dem hinterlegten Excel Schema zu kopieren**. Nur dieses beinhaltet die Formeln und Querverweise die für die engültige Berechnung der LSW Objekte notwendig sind
+
+##
+### Schritt V: Individuelle Anpassung 
+> ⚠️ **ACHTUNG**:
+>  Die in der Tabelle vorhandene **Struktur und Reihenfolge** ist fest vorgegeben und dient zur Grundlage für die Berechnung und Erstellung der Einzelobjekte. Sie muss daher zwingend **unverändert beibehalten** werden. Es lassen sich ausschließlich Zellen mit **einfachen (Zahlen)Werten** verändern, nicht jedoch solche mit **Formeln oder Querverweisen**.
+Ansonsten kann das Skript entweder nur mit Fehlern, oder aber gar nicht mehr ausgeführt werden
+
+Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für jedes Einzelsegment in der Excel Datei, die analog zum PythonPart Pfadpunkte speichern dafür jeweils einen eigenen Bereich **Allgemeine Wandparameter** und **Objektparameter** enthält
+
+<img src = "./docs/Excel_WallParam.png" width = 200/>               <img src = "./docs/Excel_ComponentParam.png" width = 300/>
+
+- erforderliche **Gesamthöhe** and **Überhöhung** in einzelnen Segmenten
+- **Wandausstattung**, hier sind aktuell die beiden Einträge "Fluchttuer" und "Durchlass" möglich
+- individuelle **Abmessungen** für Pfahl, Pfosten, Sockel und LSW Element wie etwa die Dicke oder das Pfostenprofil
+- Platzierung und Anzahl **transparenter Elemente** sowohl einzeln, wie auch in einem Bereich. Kombinationen aus beidem sind ebenfalls möglich und werden jeweils durch Komma getrennt
+
+    <img src = "./docs/Glas_Panel.png" width = 150/>    
+
+    die Zählung erfolgt von **unten nach oben** wobei alle Elemente eines Bereiches jeweils durch **ein** transparentes Element ersetzt werden
+- die **Erstellung** einzelner Segmente in der ersten Spalte komplett unterdrücken
+Für die Neuberechung der Excel Datei mit den angepassten Werten muss diese über die gleichnamige Schaltfläche **gespeichert** werden
+
+
+> ⚠️ **ACHTUNG**:
+> Even if no adjustments are necessary, the Execl file has to be **opened** and **saved** to carry out the internal calculation. Otherwise the next steps are not possible
+
+The following **steps VI  - VIII** are independend an can be skipt if not necessary for example if only a 2D drawing of the noise barrier is requested. Their order also does not count
 
 
 # NoiseBarrierTool
@@ -244,7 +297,7 @@ several path courses can be saved in one step as long as the palette is open. To
 > ⚠️ **IMPORTANT**:
 > The **order and structure** within the Excel file is fixed and serves as basis for the object calculation and creation. Therefor it has to **be kept unchanged** and only cells with a **simple value** but none with **formulas or references** can be modified. Otherwise the execution of the script will throw errors or even no longer work at all
 
-Modifying the initial general parameters of the wall components for each individual segment in the Excel file. Similar to the palette structure of the SavePoints PythonPart the can be found in the **General wall parameters** and  **Component parameters** section
+Modifying the initial general parameters of the wall components for each individual segment in the Excel file. Similar to the palette structure of the SavePoints PythonPart they can be found in the **General wall parameters** and  **Component parameters** section
 
 <img src = "./docs/Excel_WallParam.png" width = 200/>               <img src = "./docs/Excel_ComponentParam.png" width = 300/>
 
