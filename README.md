@@ -2,12 +2,12 @@
 FOR ENGLISH VERSION SEE [BELOW](#NoiseBarrierTool)!
 
 Das aus einzelnen PythonParts bestehende Tool **LSW Planung** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
-- **Pfadverlauf zeichnen(DrawPath)** um den initialen Pfadverlauf festzulegen
-- **Pfadverlauf anpassen(RecalculatePath)** zur Neuausrichtung eines geänderten Pfadverlaufs
-- **Pfadpunkte speichern(SavePathPoints)** zum abspeichern der Geometrie und der Objektparameter
-- **Wandobjekte erstellen(CreateWallComponents)** zur Erstellung eines 3D Modells der Lärmschutzwand
-- **Wandabwicklung zeichnen(DrawWallElevations)** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
-- **Wandschnitte zeichnen(DrawWallSection)** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
+- **Pfadverlauf zeichnen** um den initialen Pfadverlauf festzulegen
+- **Pfadverlauf anpassen** zur Neuausrichtung eines geänderten Pfadverlaufs
+- **Pfadpunkte speichern** zum abspeichern der Geometrie und der Objektparameter
+- **Wandobjekte erstellen** zur Erstellung eines 3D Modells der Lärmschutzwand
+- **Wandabwicklung zeichnen** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
+- **Wandschnitte zeichnen** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
 
 <img src = "./docs/NoiseBarrierContent.png" width = 450/>
 
@@ -18,15 +18,15 @@ Ein wesentlicher Bestandteil des Tool ist die Excel Datei  **LSWParameter.xlsx**
 Als weiterer Bestandteil des Tools werden zudem einige ***.rdlc  Dateien** installiert. Damit können die 3D Objekte sowohl in ALLPLAN Reports ausgewertet, als auch direkt nach Excel übergeben werden.
 
 ## Installation
-Das PythonPart **LSW Planung(NoiseBarrierTool)** lässt sich dierkt über den Plugin Manager in ALLPLAN installieren.
+Das Gesamtpake **LSW Planung** lässt sich dierkt über den PluginManager in ALLPLAN installieren.
 
 Alternativ kann die ***.allep** Datei von der zugehörigen [Release Website](https://github.com/AnkeNiedermaier/noise-barrier-public/releases) direkt heruntergeladen werden. Bei ***.allep** Dateien handelt es sich um ein internes ALLPLAN Setup, das sich per Drag und Drop in das Programmfenster installieren lässt.
 
 Voraussetzung zur Installation des PythonParts ist die ALLPLAN Version 2026.
 
 ## Installierte PythonPart Skripte
-Nach erfolgreicher Installation sind die einzelnen PythonParts des Tools **LSW Planung(NoiseBarrierTool)** zusammen mit der Ecxel Datei **LSWParameter.xlsx** in der ALLPLAN Bibliothek zu finden:
-`Std` →`Library` → `ALLPLAN GmbH` → `LSW Planung(NoiseBarrierTool)`
+Nach erfolgreicher Installation sind die einzelnen PythonParts des Tools **LSW Planung** zusammen mit der Ecxel Datei **LSWParameter.xlsx** in der ALLPLAN Bibliothek zu finden:
+`Std` →`Library` → `ALLPLAN GmbH` → `LSW Planung`
 Die ***.rdlc** Dateien werden ebenfalls im Std Ordner abgelegt:
 `Std` → `Reports`→ `deu / eng` → `LSW Planung / NoiseBarrierTool`
 Die einzelnen PythonParts des Tools werden neben der Bibliothek auch in einem neu angelegten Aufgabenbereich **LSW Planung** in der Aufgabe **Plug-in** in die ActionBar aufgenommen.
@@ -152,14 +152,30 @@ Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für
 
     die Zählung erfolgt von **unten nach oben** wobei alle Elemente eines Bereiches jeweils durch **ein** transparentes Element ersetzt werden
 - die **Erstellung** einzelner Segmente in der ersten Spalte komplett unterdrücken
+
 Für die Neuberechung der Excel Datei mit den angepassten Werten muss diese über die gleichnamige Schaltfläche **gespeichert** werden
 
 
 > ⚠️ **ACHTUNG**:
-> Even if no adjustments are necessary, the Execl file has to be **opened** and **saved** to carry out the internal calculation. Otherwise the next steps are not possible
+> Selbst wenn in der Tabelle keine Anpassungen vorgenommen werden, muss die Excel Datei **geöffnet** und **gespeichert** werden. Erst damit wird die interne Berechnung angestoßen und die weiteren Schritte können ausgeführt werden
 
-The following **steps VI  - VIII** are independend an can be skipt if not necessary for example if only a 2D drawing of the noise barrier is requested. Their order also does not count
+Die **Schritte VI - VIII** sind voneinander unabhängig und können auch entfallen, wenn beispielsweise nur 2D Zeichnungen der Lärmschutzwand benötigt werden. Eine spezifische Reihenfolge muss hier ebenfalls nicht eingehalten werden
 
+##
+### Schritt VI: PythonPart Wandobjekte erstellen
+
+<img src = "./docs/PP_CreateWall.png" width = 150/><br>
+
+Erstellen eines 3D Modells der Lärmschutzwand mit allen Einzelobjekten auf Basis der Excel Datei
+- Pfahl - Pfosten, Sockel - LSW Element
+    - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer, Oberfläche) für die Einzelobjekte
+    - Festlegung der **Materialparameter** zur Gewichtsberechnung
+- Objekte erzeugen
+    - Angabe der **Formatierung** (Farbe, Layer) für die Nummerierung
+    - Auswahl der **Excel Datei** und des Tabellenblatts
+
+As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies but with all relevant parameters as **attributes** in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
+>**HINT**: in choosing another Excel file or sheet, several noise barrier models can be created at once as the palette stays open
 
 # NoiseBarrierTool
 
@@ -180,7 +196,7 @@ Another essential component of the tool is the Excel file **NoiseBarrierParamete
 Together with the other components, also several ***.rdlc  templates** are installed. They can be used to evaluate the 3D objects both as ALLPLAN reports or Excel tables. 
 
 ## Installation
-The PythonPart **NoiseBarrierTool** can be installed directly from the Plugin Manager in ALLPLAN. 
+The **NoiseBarrierTool**  package can be installed directly from the PluginManager in ALLPLAN. 
 
 Alternatively, the corresponding ***.allep** package can be downloaded from the [release page](https://github.com/AnkeNiedermaier/noise-barrier-public/releases). ***.allep** files are ALLPLAN internal setups that can be installed via drag and drop them into the program window.
 
@@ -189,7 +205,7 @@ At least the version 2026 is needed to install the PythonPart.
 ## Installed PythonPart Scripts
 If the installation was successfull, the individual PythonParts of the **NoiseBarrierTool** as well as the Ecxel file **NoiseBarrierParameter.xlsx** can be found
 in the ALLPLAN Library:
-`Office` →`Library` → `ALLPLAN GmbH` → `LSW Planung (NoiseBarrierTool)`
+`Office` →`Library` → `ALLPLAN GmbH` → `NoiseBarrierTool`
 The ***.rdlc** files are also stored in the office folder:
 `Office` → `Reports`→ `deu / eng` → `LSW Planung / NoiseBarrierTool`
 Besides the library, the individual PythonParts of the tool can also be found in the ActionBar in a newly created task area **NoiseBarrierTool** inside the task **Plug-ins**.
