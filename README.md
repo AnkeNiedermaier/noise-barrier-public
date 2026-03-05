@@ -174,8 +174,28 @@ Erstellen eines 3D Modells der Lärmschutzwand mit allen Einzelobjekten auf Basi
     - Angabe der **Formatierung** (Farbe, Layer) für die Nummerierung
     - Auswahl der **Excel Datei** und des Tabellenblatts
 
-As soon as a sheet is selected a **preview** shows the potential model at the place of the underlying path course. With the **Create** button all noise barrier components are created as simple 3D bodies but with all relevant parameters as **attributes** in the current active drawing file. The single panels in each segment are also collocated into **element groups**. The pile numbering is drawn as 2D text
->**HINT**: in choosing another Excel file or sheet, several noise barrier models can be created at once as the palette stays open
+Nach Auswahl des Tabellenblatts wird an der Stelle des zu grunde ligenden Pfades eine **Vorschau** angezeigt. Durch einen Klick auf die Schaltfäche **Erzeugen** werden alle Bestandteile der Lärmschutzwand als einfache 3D Körper im aktiven Teilbild erstellt. Zudem enthalten sie alle relevanten Kennwerte und Parameter in Form von **Attributen** und die einzelnen LSW Elemente sind segmentweise zu einer **Elementgruppe** zusammengefasst. Die Nummerierung der Pfähle wird als 2D Text erzeugt.
+>**HINWEIS**: durch Auswahl einer anderen Excel Datei und/oder Tabellenblatt lassen sich mehrere LSW Modelle in einem Zuge erstellen, solange die Palette geöffnet ist
+##
+### Schritt VII: PythonPart Wandabwicklung zeichnen
+
+<img src = "./docs/PP_DrawElevations.png" width = 150/><br>
+
+Zeichnen einer **2D Längsabwicklung** der Lärmschutzwand einschließlich einer dynamischen Tabelle der zugehörigen Parameter auf Basis der Excel Tabelle
+- Pfahl - Pfeiler, Sockel - LSW Element
+    - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer, Fillingfarbe) der einzelnen Wandkomponenten
+- Inhalt Tabelle
+    - Angabe ob die Tabelle erstellt werden soll sowie Angabe des **Layers**
+    - Festlegung der **Gesamtanzahl** sowie der jeweiligen **Parameter** der einzelnen **Reihen** der dynamischen Tabelle
+- Inhalt Grafik
+    - Angabe der zu erstellenden **Beschriftung** einschließlich ihres jeweiligen **Layers**
+    - Angabe ob und mit welcher **Formatierung** (Stift, Strich, Farbe, Layer) die möglichen **Kurvenverläufe** erstellt werden sollen
+- Objekte erzeugen
+    - Auswahl der **Excel Datei** und des Tabellenblatts
+
+Sind Datei und Tabellenblatt festgelegt, wird mit einem Klick auf die Schaltfläche **Eingeben** des Platzierungspunktes eine **Vorschau** am Fadenkreuz erzeugt, die mit einem weiteren Klick abgesetzt werden kann. Sie lässt sich anschließend hinsichtlich Inhalt und Aussehen anpassen. Durch Klick auf die **Erzeugen** Schaltfläche wird die Abwicklung der Lärmschutzwand als **2D Zeichnung** im aktiven Teilbild erstellt.
+>**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich nacheinander mehrere Abwicklungen zeichnen, entweder mit unterschiedlichem Inhalt, an verschiedenen Stellen im Teilbild. Die Auswahl einer anderen Excel Datei oder eines anderen Tabellenblatts ist ebenfalls möglich, wenn anschließend die Schaltfläche **Eingeben** erneut angeklickt wird
+
 
 # NoiseBarrierTool
 
@@ -365,7 +385,7 @@ Draw a **2D longitudinal elevation** of the noise barrier together with a dynami
 - Create objects
     - selection of the **Excel file** and sheet
 
-Once file and sheet are selected, in clicking the **Input** button for the placement point a **preview** of the elevation is shown at the crosshair and can be placed with another click in the viewport. It can be adapted in content and appearance. With the **Create** button the elevation of the noise barrier is created as **2D drawing** in the current active drawing file
+Once file and sheet are selected, in clicking the **Input** button for the placement point a **preview** of the elevation is shown at the crosshair and can be placed with another click in the viewport. It can afterwards be adapted in content and appearance. With the **Create** button the elevation of the noise barrier is created as **2D drawing** in the current active drawing file
 >**HINT**: as the palette stays open, it is possible to draw several elevations or the same one with different content / placement in choosing another placement point,  or chosing another Excel file or sheet and clicking the **Input** button again
 ##
 ### Step VIII: PythonPart DrawWallSections
