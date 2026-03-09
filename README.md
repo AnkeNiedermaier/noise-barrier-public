@@ -194,7 +194,86 @@ Zeichnen einer **2D Längsabwicklung** der Lärmschutzwand einschließlich einer
     - Auswahl der **Excel Datei** und des Tabellenblatts
 
 Sind Datei und Tabellenblatt festgelegt, wird mit einem Klick auf die Schaltfläche **Eingeben** des Platzierungspunktes eine **Vorschau** am Fadenkreuz erzeugt, die mit einem weiteren Klick abgesetzt werden kann. Sie lässt sich anschließend hinsichtlich Inhalt und Aussehen anpassen. Durch Klick auf die **Erzeugen** Schaltfläche wird die Abwicklung der Lärmschutzwand als **2D Zeichnung** im aktiven Teilbild erstellt.
->**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich nacheinander mehrere Abwicklungen zeichnen, entweder mit unterschiedlichem Inhalt, an verschiedenen Stellen im Teilbild. Die Auswahl einer anderen Excel Datei oder eines anderen Tabellenblatts ist ebenfalls möglich, wenn anschließend die Schaltfläche **Eingeben** erneut angeklickt wird
+>**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich nacheinander mehrere Abwicklungen zeichnen, entweder mit unterschiedlichem Inhalt oder an verschiedenen Stellen im Teilbild. Die Auswahl einer anderen Excel Datei oder eines anderen Tabellenblatts ist ebenfalls möglich, wenn anschließend die Schaltfläche **Eingeben** erneut angeklickt wird
+##
+### Schritt VIII: PythonPart Wandschnitte zeichnen
+
+<img src = "./docs/PP_DrawSections.png" width = 150/><br>
+
+Zeichnen eines oder mehrerer **2D Schnitte** der einzelnen LSW Segmente einschließlich einer kompakten Tabelle der wichtigsten Parameter sowie der zugehörigen Bemaßung
+- Pfahl - Pfosten, Sockel - LSW Element
+    - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer, Fillingfarbe) der einzelnen Wandkomponenten
+- Tabelle - Bemaßung
+    - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) und ob Tabelle oder Bemaßung erstellt werden sollen
+- Content graphic
+    - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) der **Kurvenverläufe** von Gelände und Gradiente und ob diese erstellt werden sollen
+- Objekte erzeugen
+    - Auswahl der **Excel Datei** und des Tabellenblatts
+    - Festlegung der Segmente (Pfosten) **Nummern** von denen Schnitte erstellt werden sollen
+    - Angabe des **Abstands** zwischen den Einzelschnitten
+
+Sobald analog zur Abwicklung die Excel Datei und das Tabellenblatt gewählt sowie die gewünschten Segmentnummern eingegeben sind, wird durch einen Klick auf die Schaltfläche **Eingeben** des Platzierungspunktes eine **Vorschau** der Schnitte am Fadenkreuz angezeigt und lässt sich mit einem zweiten Klick im Teilbild absetzen. Es lässt sich weiterhin anpassen bis die Schaltfläche **Erzeugen** geklickt wurde. Damit werden die einzelnen Schnitte der LSW Segmente als **2D Zeichnungen** im aktiven Teilbid erstellt
+>**HINWEIS**: es lassen sich in einem Zuge mehrere oder sogar Schnitte aller Segmente der Lärmschutzwand zeichnen. Die Angabe der gewünschten Segmentnummern erfolgt entweder einzeln oder als Bereich und das Ganze lässt sich auch mehrmals nacheinander ausführen
+
+##
+### Schritt IX: LSW Auswertung
+
+> ⚠️ **ACHTUNG**:
+> Eine Auswertung ist ausschließlich für mit dem PythonPart **Wandobjekte erstellen** erzeugte **3D Körper** möglich
+
+Erzeugen von **Reports** oder **Excel Tabellen** der einzelnen LSW Objekte einschließlich darin hinterlegter Parameter
+
+<img src = "./docs/Eval_Excel.png" width = 200/>               <img src = "./docs/Eval_Report.png" width = 200/>
+
+- Aktivierung der relevanten Teilbilder und Layer
+- Aufrufen der Funktion **Report** oder **Attribute exportieren** in der ActionBar
+- Auswahl der gewünschten ***.rdlc Vorlage** (entweder nach Segment oder nach Typ)
+- Selektion der auszuwertenden Objekte
+
+Abhängig davon, welche Funktion verwendet wurde, wird entweder ein **ALLPLAN report** oder eine **Excel Datei** erzeugt, in der sowohl die Geometrie, als auch semantische Informationen wie etwa das Material ausgewertet werden.  Beides lässt sich anschließend beliebig weiter verwenden
+>**HINWEIS**: alle Reportvorlagen besitzen eine integrierte **Zoom und Markieren** Funktion, mit der sich die aufgelisteten Objekte durch einen Klick auf die zugehörige Grafik ober das graue Kästchen im Teilbild lokalisieren lassen
+
+<img src = "./docs/Zoom_Picture.png" width = 200/>               <img src = "./docs/Zoom_Box.png" width = 200/>
+
+#
+## Attribute der einzelnen LSW Komponenten
+
+
+| Komponente    | Attribut | Wert / Anmerkung |
+| -------- | ------- | ------- |
+| **Pfahl**  | Bezeichnung   | NoiseBarrier_footing | 
+|   | Name     | Footing pire-no. x |
+|      | IfcEntity    | IfcFooting |
+|   | Total length     | lenght in [m] |
+|      | Total_weight    | based on material density |
+|   | Number     | segment number |
+|      | Object_name    | NoiseBarrier_object |
+| **pile**  | Naming   | NoiseBarrier_pile | 
+|   | Name     | Pile-no. x |
+|      | IfcEntity    | IfcColumn |
+|      | Profile name    | section profile name |
+|   | Total length     | height in [m] |
+|      | Total_weight    | based on material density |
+|   | Number     | segment number |
+|      | Object_name    | NoiseBarrier_object |
+| **plinth**  | Naming   | NoiseBarrier_plinth | 
+|   | Name     | Plinth-no. x |
+|      | IfcEntity    | IfcWall |
+|      | Total_weight    | based on material density |
+|   | Number     | segment number |
+|      | Object_name    | NoiseBarrier_object |
+| **panel**  | Naming   | NoiseBarrier_panel | 
+|   | Name     | Panel-no. x_x.x (segment number_number.total_number) |
+|      | IfcEntity    | IfcWall |
+|   | Number     | x.x (number.total number) |
+|      | Object_name    | NoiseBarrier_object_part |
+| **panel group**  | Naming   | Panel-group-no. x | 
+|   | Name     | Panel-group-no. x |
+|      | IfcEntity    | IfcElementAssembly |
+|   | Number     | segment number |
+|      | Number of times    | number of panels |
+|   | View area     | complete panel area [m²] |
+|      | Object_name    | NoiseBarrier_object |
 
 
 # NoiseBarrierTool
@@ -396,8 +475,7 @@ Draw one or several **2D sections** of the individual noise barrier segments tog
 - Pire - Pile, Plinth - Panel
     - setting of the **format** (pen, stroke, color, layer, filling) for each kind of component
 - Table - Dimesioning
-    - setting of the **format** (pen, stroke, color, layer) and if the components should be shown
-    - determin **total number** and **parameter** for each **row** of the dynamic table
+    - setting of the **format** (pen, stroke, color, layer) and if a table or dimensioning should be shown
 - Content graphic
     - setting of the creation and **format** (pen, stroke, color, layer) for the terrain and gradient **curves** and if they should be shown
 - Create objects
@@ -415,7 +493,9 @@ Similar to the elevation drawing, once file, sheet and pile numbers are selected
 > The evaluation is only possible for **3D objects** created with the **CreateWallComponents** PythonPart
 
 Generate **reports** or **Excel schedules** of the noise barrier model components and the assigned paremeters
+
 <img src = "./docs/Eval_Excel.png" width = 200/>               <img src = "./docs/Eval_Report.png" width = 200/>
+
 - activation of the relevant drawing file(s) and layers
 - call the **Reports** or **Export Attributes** function from the ActionBar
 - choosing of the desired ***.rdlc file** (per component or per segment)
@@ -425,6 +505,7 @@ Depending on the executed function either an **ALLPLAN report** or an **Excel fi
 >**HINT**: all report templates contain a **zoom and highlight** option to identify the location of the listed objects in the drawing file in clicking on the graphic or grey box here
 
 <img src = "./docs/Zoom_Picture.png" width = 200/>               <img src = "./docs/Zoom_Box.png" width = 200/>
+
 #
 ## Table of noise barrier component attributes
 
