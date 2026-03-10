@@ -9,7 +9,7 @@ Das aus einzelnen PythonParts bestehende Tool **LSW Planung** ermöglicht die ac
 - **Wandabwicklung zeichnen** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
 - **Wandschnitte zeichnen** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
 
-<img src = "./docs/NoiseBarrierContent.png" width = 450/>
+<img src = "./docs/LSWContent.png" width = 350/>
 
 Die Einzelschritte des Workflows sind zwar miteinander verbunden, können aber unabhängig voneinander ausgeführt werden. Daher lässt sich das Tool auch generell zur Berechnung von **Pfadverläufe in einem Gelände** verwenden, die zur Platzierung beliebiger Objekte, beispielsweise mit der ALLPLAN Funktion **Kopieren entlang beliebigem Pfad** dienen.
 
@@ -34,11 +34,11 @@ Die einzelnen PythonParts des Tools werden neben der Bibliothek auch in einem ne
 ## Vorbereitung
 Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzüge** und zum anderen zusammenhängende geschlossene **3D Flächen** in Form eines Polyhedrons.
 
-<img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
+<img src = "./docs/Basic_Fläche.png" width = 300/>          <img src = "./docs/Basic_Polygonzug.png" width = 300/>
 
 Es kann daher im Vorfeld erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
 
-<img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
+<img src = "./docs/Prep_Wandeln_I.png" width = 150/>           <img src = "./docs/Prep_Wandeln_II.png" width = 150/>
 
 Zur Vereinigung separater Einzelflächen kann der **Boolsche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
 
@@ -87,7 +87,7 @@ Direkte Modifikation des Pfadverlauf (Polygon) in ALLPLAN mit den allgemeinen hi
 - entfernen von Punkten durch ziehen auf einen Nachbarpunkt
 - ...
 
-<img src = "./docs/Poly_Modi.png" width = 250/><br>
+<img src = "./docs/Poly_Modi_deu.png" width = 250/><br>
 
 > ⚠️ **ACHTUNG**:
 > Damit die weiteren Workflowschritte problemlos ausgeführt werden können ist es erforderlich, dass auch nach erfolgter Modifikation **ein** zusammenhängender Polygonzug verbeleibt. Entstandene Einzelsegmente müssen daher falls notwendig mit der Funktion **Linien zu Polygonen verbinden** wieder zusammengesetzt werden
@@ -141,14 +141,14 @@ Ansonsten kann das Skript entweder nur mit Fehlern, oder aber gar nicht mehr aus
 
 Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für jedes Einzelsegment in der Excel Datei, die analog zum PythonPart Pfadpunkte speichern dafür jeweils einen eigenen Bereich **Allgemeine Wandparameter** und **Objektparameter** enthält
 
-<img src = "./docs/Excel_WallParam.png" width = 200/>               <img src = "./docs/Excel_ComponentParam.png" width = 300/>
+<img src = "./docs/Excel_WandParam.png" width = 200/>               <img src = "./docs/Excel_KomponentenParam.png" width = 300/>
 
 - erforderliche **Gesamthöhe** and **Überhöhung** in einzelnen Segmenten
 - **Wandausstattung**, hier sind aktuell die beiden Einträge "Fluchttuer" und "Durchlass" möglich
 - individuelle **Abmessungen** für Pfahl, Pfosten, Sockel und LSW Element wie etwa die Dicke oder das Pfostenprofil
 - Platzierung und Anzahl **transparenter Elemente** sowohl einzeln, wie auch in einem Bereich. Kombinationen aus beidem sind ebenfalls möglich und werden jeweils durch Komma getrennt
 
-    <img src = "./docs/Glas_Panel.png" width = 150/>    
+    <img src = "./docs/Glas_Elemente.png" width = 150/>    
 
     die Zählung erfolgt von **unten nach oben** wobei alle Elemente eines Bereiches jeweils durch **ein** transparentes Element ersetzt werden
 - die **Erstellung** einzelner Segmente in der ersten Spalte komplett unterdrücken
@@ -223,17 +223,17 @@ Sobald analog zur Abwicklung die Excel Datei und das Tabellenblatt gewählt sowi
 
 Erzeugen von **Reports** oder **Excel Tabellen** der einzelnen LSW Objekte einschließlich darin hinterlegter Parameter
 
-<img src = "./docs/Eval_Excel.png" width = 200/>               <img src = "./docs/Eval_Report.png" width = 200/>
+<img src = "./docs/Auswertung_Excel.png" width = 200/>                  <img src = "./docs/Auswertung_Report.png" width = 200/>
 
 - Aktivierung der relevanten Teilbilder und Layer
 - Aufrufen der Funktion **Report** oder **Attribute exportieren** in der ActionBar
 - Auswahl der gewünschten ***.rdlc Vorlage** (entweder nach Segment oder nach Typ)
 - Selektion der auszuwertenden Objekte
 
-Abhängig davon, welche Funktion verwendet wurde, wird entweder ein **ALLPLAN report** oder eine **Excel Datei** erzeugt, in der sowohl die Geometrie, als auch semantische Informationen wie etwa das Material ausgewertet werden.  Beides lässt sich anschließend beliebig weiter verwenden
+Abhängig davon, welche Funktion verwendet wurde, wird entweder ein **ALLPLAN Report** oder eine **Excel Datei** erzeugt, in der sowohl die Geometrie, als auch semantische Informationen wie etwa das Material ausgewertet werden.  Beides lässt sich anschließend beliebig weiter verwenden
 >**HINWEIS**: alle Reportvorlagen besitzen eine integrierte **Zoom und Markieren** Funktion, mit der sich die aufgelisteten Objekte durch einen Klick auf die zugehörige Grafik ober das graue Kästchen im Teilbild lokalisieren lassen
 
-<img src = "./docs/Zoom_Picture.png" width = 200/>               <img src = "./docs/Zoom_Box.png" width = 200/>
+<img src = "./docs/Zoom_Bild.png" width = 200/>               <img src = "./docs/Zoom_Kasten.png" width = 200/>
 
 #
 ## Attribute der einzelnen LSW Komponenten
@@ -241,39 +241,39 @@ Abhängig davon, welche Funktion verwendet wurde, wird entweder ein **ALLPLAN re
 
 | Komponente    | Attribut | Wert / Anmerkung |
 | -------- | ------- | ------- |
-| **Pfahl**  | Bezeichnung   | NoiseBarrier_footing | 
-|   | Name     | Footing pire-no. x |
+| **Pfahl**  | Name  | LSW_Gründung | 
+|   | Bezeichnung     | Gründungspfahl-Nr. x |
 |      | IfcEntity    | IfcFooting |
-|   | Total length     | lenght in [m] |
-|      | Total_weight    | based on material density |
-|   | Number     | segment number |
-|      | Object_name    | NoiseBarrier_object |
-| **pile**  | Naming   | NoiseBarrier_pile | 
-|   | Name     | Pile-no. x |
+|   | Gesamtlänge     | Länge in [m] |
+|      | Gesamtgewicht    | basierend auf der Material-Rohdichte |
+|   | Nummer     | Segmentnummer |
+|      | Objektname    | LSW_Objekt |
+| **Pfosten**  | Name   | LSW_Pfosten | 
+|   | Bezeichnung     | Pfosten-Nr. x |
 |      | IfcEntity    | IfcColumn |
-|      | Profile name    | section profile name |
-|   | Total length     | height in [m] |
-|      | Total_weight    | based on material density |
-|   | Number     | segment number |
-|      | Object_name    | NoiseBarrier_object |
-| **plinth**  | Naming   | NoiseBarrier_plinth | 
-|   | Name     | Plinth-no. x |
+|      | Profilname    | Querschnittsbezeichnung |
+|   | Gesamtlänge     | Länge in [m] |
+|      | Gesamtgewicht    | basierend auf der Material-Rohdichte |
+|   | Nummer     | Segmentnummer |
+|      | Objektname    | LSW_Objekt |
+| **Sockel**  | Name   | LSW_Sockel | 
+|   | Bezeichnung     | Sockel-Nr. x |
 |      | IfcEntity    | IfcWall |
-|      | Total_weight    | based on material density |
-|   | Number     | segment number |
-|      | Object_name    | NoiseBarrier_object |
-| **panel**  | Naming   | NoiseBarrier_panel | 
-|   | Name     | Panel-no. x_x.x (segment number_number.total_number) |
+|      | Gesamtgewicht    | basierend auf der Material-Rohdichte |
+|   | Nummer     | Segmentnummer |
+|      | Objektname    | LSW_Objekt |
+| **LS-Element**  | Name   | LSW_LS-Element | 
+|   | Bezeichnung     | LS-Element-Nr. x_x.x (Segmentnummer_Elementnummer.Anzahl Elemente) |
 |      | IfcEntity    | IfcWall |
-|   | Number     | x.x (number.total number) |
-|      | Object_name    | NoiseBarrier_object_part |
-| **panel group**  | Naming   | Panel-group-no. x | 
-|   | Name     | Panel-group-no. x |
+|   | Nummer     | x.x (Elementnummer.Anzahl Elemente) |
+|      | Objektname    | LSW_Teilobjekt |
+| **LS-Element-Gruppe**  | Name   | LS-Element-Gruppe-Nr. x | 
+|   | Bezeichnung     | LS-Element-Gruppe-Nr. x |
 |      | IfcEntity    | IfcElementAssembly |
-|   | Number     | segment number |
-|      | Number of times    | number of panels |
-|   | View area     | complete panel area [m²] |
-|      | Object_name    | NoiseBarrier_object |
+|   | Nummer     | Segmentnummer |
+|      | Anzahl der Ausführungen    | Anzahl LS-Elemente |
+|   | Ansichtsfläche     | Gesamtfläche LS-Elemente [m²] |
+|      | Objektname    | LSW_Objekt |
 
 
 # NoiseBarrierTool
