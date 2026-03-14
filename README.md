@@ -39,34 +39,35 @@ Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzü
 Für das Erzeugen der erforderlichen **3D Flächen** stehen in ALLPLAN, abhängig von den verfügbaren Ausgangsdaten,  unterschiedliche Möglichkeiten zur Verfügung. Die speziell zu diesen Zwecken entwickelten Funktionen des **Digitalen Geländemodells** aus der **Rolle Straßenbau** sind dabei besonders flexibel, da sie Daten aus unterschiedlichen Quellen, beispielsweise Geoportalen oder selbst erzeugte Geländepunkte, verarbeiten können.
 Damit derart erzeugte Geländemodelle die für die LSW Planung erforderliche Form erhalten, sollte für die **Geländedarstellung** der **Darstellungsstil IfcTerrain** verwendet werden. Durch ihn wird die Oberfläche als **zusammenhängende 3D Fläche** im aktiven Teilbild erzeugt.
 
-<img src = "./docs/Gelaende_style.png" width = 200/> 
+<img src = "./docs/Gelaende_style.png" width = 300/> 
 
 Das manuelle Erstellen mit den ALLPLAN Funktionen des Moduls **Freies Modellieren** ist ebenfalls möglich.
 
 <img src = "./docs/Basic_Fläche.png" width = 300/>
 
-Je nachdem, in welcher Form sie erzeugt werden, kann es im Vorfeld zudem erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
+Je nachdem, in welcher Form sie erzeugt werden, kann es im Vorfeld zudem erforderlich sein, die vorhandenen ALLPLAN Objekte in geeignete "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
 
 <img src = "./docs/Prep_Wandeln_II.png" width = 150/>
 
-Zur Vereinigung separater Einzelflächen kann der **Boolsche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
+Zur Vereinigung separater Einzelflächen kann der **Boolesche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
 
 ### Referenzachse
 
-Um bei der internen Berechnung der LSW Parameter (beispielsweise Gradientenhöhen, Stationswerte der LSW Pfosten im Bezug zur Trassierungsachse ...) eine möglichst **hohe Genauigkeit** zu erreichen, sollte der **3D Polygonzug der Referenzachse** im Vorfeld entesprechen aufbereitet werden.
+Um bei der internen Berechnung der LSW Parameter (beispielsweise Gradientenhöhen, Stationswerte der LSW Pfosten im Bezug zur Trassierungsachse ...) eine möglichst **hohe Genauigkeit** zu erreichen, sollte der **3D Polygonzug der Referenzachse** im Vorfeld entsprechen aufbereitet werden.
 
 Es wird empfohlen, hierzu die **Achsfunktionen** aus der Rolle **Straßenbau** zu verwende. Mit ihnen lässt sich die Geometrie des resultierenden 3D Polygonzuges über die Parameter sehr einfach steuern.
 
 Der **3D Polygonzug** sollte mit einer zweckmäßigen **Teilung** erzeugt werden, die in der Funktion **Allgemeine Einstellungen** entsprechend festgelegt werden kann.
 
 <figure>
-<img src = "./docs/Achse_Stationing.png" width = 200 alt = "Beschreibung"/>
+<img src = "./docs/Achse_Stationing.png" width = 300 alt = "Beschreibung"/>
 <figcaption>Beispielwerte</figcaption>
 </figure>
 
+
 Zudem sollte bei der Verwendung von Referenzachsen, die deutlich länger sind als der geplante LSW Verlauf, ihr Anfangspunkt in den Bereich des Anfangspunktes des LSW-Pfades gelegt werden. Das ist am einfachsten über die Funktion **Projektgrenzen definieren** möglich
 
-<img src = "./docs/Achse_Boundaries.png" width = 300/>
+<img src = "./docs/Achse_Boundaries.png" width = 400/>
 
 Die manuelle Erstellung der 3D Polygonzüge ist analog zur Geländefläche ebenfalls möglich, wobei auch hier eine nachträgliche **Wandlung** in den benötigten Typ notwendig sein kann.
 
@@ -75,19 +76,19 @@ Die manuelle Erstellung der 3D Polygonzüge ist analog zur Geländefläche ebenf
 
 ## Workflow
 
-Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, angefangen von der ersten Pfadberechnung bis hin zur Auswertung einzelnen Wandkomponenten, setzt sich aus mehreren Einzelschritten zusammen. Sie werden überwiegen durch eines der individuellen PythonParts repräsentiert:
+Der Gesamtworkflow mit allen Möglichkeiten und Optionen, die das Tool bietet, angefangen von der ersten Pfadberechnung bis hin zur Auswertung einzelner Wandkomponenten, setzt sich aus mehreren Einzelschritten zusammen. Sie werden überwiegend durch eines der individuellen PythonParts repräsentiert:
 - **Definition** des initialen Pfadverlaufs
 - **Modifikation** zur Anpassung an örtliche Gegebenheiten
 - **Neuberechnung** des modifizierten Pfadverlauf
 - **Abspeichern** der Koordinaten und Objektparameter
 - **Anpassung** individueller Wandabschnitte
-- **Erstellung** des 3D Models der Lärmschutzwand
+- **Erstellung** des 3D Modells der Lärmschutzwand
 - **Zeichnen** von Ansichten und Schnitten
 - **Auswerten** der 3D Objekte
 
 Die einzelnen Schritte lassen sich zwar unabhängig voneinander und nicht zwangsläufig direkt nacheinander ausführen, die initiale Definition eines Pfadverlaufs sowie das Abspeichern in der Excel Datei sind allerdings zwingend, um 3D Modelle oder 2D Zeichnungen erstellen zu können. Es wird daher empfohlen, sich an die hier beschriebene Reihenfolge zu halten, nicht notwendige Zwischenschritte können bei Bedarf entfallen.
 
-Grundsätzlich könne alle installierten PythonParts, unabhängig davon ob zusätzlich ein ActionBar Eintrag erstellt wird, über die **Palette Bibliothek** aufgerufen werden. Gestartet werden sie entweder über einen **Doppelklick** auf das entsprechende Ikon, oder per **Drag und Drop** in eines der offenen Fenster. Damit wird die zugehörige Eigenschaftenpalett eingeblendet und das hinterlegte Skript ausgeführt.
+Grundsätzlich können alle installierten PythonParts, unabhängig davon ob zusätzlich ein ActionBar Eintrag erstellt wird, über die **Palette Bibliothek** aufgerufen werden. Gestartet werden sie entweder über einen **Doppelklick** auf das entsprechende Icon, oder per **Drag und Drop** in eines der offenen Fenster. Damit wird die zugehörige Eigenschaftenpalette eingeblendet und das hinterlegte Skript ausgeführt.
 
 >**HINWEIS**: Jede PythonPart Palette enthält in der linken unteren Ecke 3 allgemeine Schaltflächen **Als Favorit speichern**, **Favorit laden** und **Auf Grundeinstellungen zurücksetzen**. Sie dienen dazu, individuelle Vorgaben und Werte für die einzelnen Paletten zu speichern und wieder einzulesen. Das ist vor allem bei den Objekt- und Wandparametern hilfreich, die relativ viele Eingabefelder enthalten.
 
@@ -98,24 +99,24 @@ Grundsätzlich könne alle installierten PythonParts, unabhängig davon ob zusä
 
 <img src = "./docs/PP_DrawPath.png" width = 150/><br>
 
-Berechnung des initialen Pfadverlaus parallel zum zu Grunde liegenden Polygonzug der Referenzachse
+Berechnung des initialen Pfadverlaufs parallel zum zu Grunde liegenden Polygonzug der Referenzachse
 
-- Auswahl von **Gelände** (3D Fläche) und **Referenzachse** (3D Polylgonzug) in der durch das PythonPart vorgegeben Reihenfolge
+- Auswahl von **Gelände** (3D Fläche) und **Referenzachse** (3D Polylgonzug) in der durch das PythonPart vorgegebenen Reihenfolge
 - Eingabe der erforderlichen Werte für den **Abstand** zur Achse und die **Länge** der einzelnen Segmente
-- Festlegung des zu übernehmenden Teils der Referenzachse, entweder **komplett** oder einen durch **Anfangs- und Enpunkt** definierten Teilabschnitt
+- Festlegung des zu übernehmenden Teils der Referenzachse, entweder **komplett** oder einen durch **Anfangs- und Endpunkt** definierten Teilabschnitt
 - Festlegung der **Berechnungsrichtung**, wahlweise auf- oder absteigend
 - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
 
 
-Sobald Gelände und Referenzachse ausgewählt sind, wird im Teilbild eine **Vorschau** des Pfadverlaufs angezeigt, die sich durch ändern der Werte in der Palette anpassen lässt. Durch einen Klick auf die **Erzeugen** Schaltfläch wird der Pfadverlauf als Elementgruppe aus 3D Polygonzug und 2D Text im aktiven Teilbild erstellt.<br>
->**HINWEIS**: da die Palette weiterhin geöffnet bleibt, lassen sich in einem Zug mehrere Pfadverläufe mit unterschiedlichen Abständen und Segmentlängen nacheinander eingeben. Die Auswahl alternativer Objekte für Gelände und Referenzachse ist ebenfalls möglich<br>
+Sobald Gelände und Referenzachse ausgewählt sind, wird im Teilbild eine **Vorschau** des Pfadverlaufs angezeigt, die sich durch Ändern der Werte in der Palette anpassen lässt. Durch einen Klick auf die **Erzeugen** Schaltfläche wird der Pfadverlauf als Elementgruppe aus 3D Polygonzug und 2D Text im aktiven Teilbild erstellt.<br>
+>**HINWEIS**: Da die Palette weiterhin geöffnet bleibt, lassen sich in einem Zug mehrere Pfadverläufe mit unterschiedlichen Abständen und Segmentlängen nacheinander eingeben. Die Auswahl alternativer Objekte für Gelände und Referenzachse ist ebenfalls möglich.<br>
 
 ##
 ### Schritt II: Manuelle Pfadanpassung
 Direkte Modifikation des Pfadverlauf (Polygon) in ALLPLAN mit den allgemeinen hierfür vorhandenen Funktionen
 - verschieben einzelnen Polygonpunkte
 - einfügen zusätzlicher Punkte über **Linie knicken**
-- entfernen von Punkten durch ziehen auf einen Nachbarpunkt
+- entfernen von Punkten durch Ziehen auf einen Nachbarpunkt
 - ...
 
 <img src = "./docs/Poly_Modi_deu.png" width = 250/><br>
@@ -135,9 +136,9 @@ Erneute Angleichung des modifizierten Pfadverlaufs an die Geländehöhe oder Zuw
 - im zweiten Falle Festlegung des **Bereichs** der neu berechnet werden soll, einschließlich **Berechnungsrichtung** und (neuer) **Segmentlänge**
 - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) für Pfadverlauf und Nummerierung
 
-Der modifizierte Pfadverlauf wird als **Vorschau** angezeigt und kann erneut angepasst werden. Mit einem Klick auf die **Erzeugen** Schaltfläche wird er analog zum initialen Verlauf im Teilbild erstellt, wobei dieser durch AKtivieren der Option **Ursprungspfad löschen** gleichzeitig entfernt werden kann.<br>
->**HINWEISE**: bei der Anpassungsart Höhenangleichung bleibt der Pfadverlauf als solche unverändert, es erfolgt lediglich eine Anpassung der Z Koordinaten der Einzelpunkte<br>
-es lassen sich in einem Zuge unterschiedliche Anpassungen und Neuberechnungen eines oder auch mehrere Pfade nacheinander durchführen, so lange die Palette geöffnet ist. Darüber hinaus lässt sich auch der Schritt III merhmals in einem sich wiederholenden sequentiellen Prozess ausführen
+Der modifizierte Pfadverlauf wird als **Vorschau** angezeigt und kann erneut angepasst werden. Mit einem Klick auf die **Erzeugen** Schaltfläche wird er analog zum initialen Verlauf im Teilbild erstellt, wobei dieser durch Aktivieren der Option **Ursprungspfad löschen** gleichzeitig entfernt werden kann.<br>
+>**HINWEISE**: Bei der Anpassungsart Höhenangleichung bleibt der Pfadverlauf im Grundriss unverändert, es erfolgt lediglich eine Anpassung der Z Koordinaten der Einzelpunkte.<br>
+Es lassen sich in einem Zuge unterschiedliche Anpassungen und Neuberechnungen eines oder auch mehrere Pfade nacheinander durchführen, so lange die Palette geöffnet ist. Darüber hinaus lässt sich auch der Schritt III mehrmals in einem sich wiederholenden sequentiellen Prozess ausführen.
 
 ##
 ### Schritt IV: PythonPart Pfadpunkte speichern
@@ -152,7 +153,7 @@ Abspeichern des endgültigen Pfadverlaufs sowie der pauschalen Parameterwerte f�
     - Auswahl von **Gelände** (3D Fläche), **Pfadverlauf** (3D Polygonzug) und **Referenzachse** (3D Polygonzug)
     - Eingabe der Abstände der parallelen **Geländeverläufe** auf der Strecken- und Anliegerseite
 - Wandparameter einstellen
-    - Eingabe der intitialen die **Gesamtwand** betreffenden Parameter
+    - Eingabe der initialen die **Gesamtwand** betreffenden Parameter
     - Auswahl der **Berechnungsmethode** für die Sockeloberkante
 - Objektparameter einstellen - Punkte speichern
     - Eingabe der initialen die einzelnen **Wandobjekte** (Pfahl, Pfosten, Sockel, LSW Element) betreffenden Parameter
@@ -161,16 +162,16 @@ Abspeichern des endgültigen Pfadverlaufs sowie der pauschalen Parameterwerte f�
 Nach Auswahl der erforderlichen Berechnungsgrundlagen werden in einer **Vorschau** die parallelen Geländeverläufe sowie Lotlinien von den einzelnen Pfadpunkten auf die Referenzachse angezeigt. Mit einem Klick auf die Schalfläche **Speichern** werden alle Geometriewerte und Parameter in die Excel Datei geschrieben. Optional lassen sich zudem die Lotlinien in Hilfskonstruktion im aktiven Teilbild erstellen
 >**HINWEISE**: beim Schritt **Pfadpunkte speichern** lässt sich für die Wand- und Objektparameter im PythonPart nur jeweils **ein** globaler Wert eingeben. 
 Dieser kann anschließend individuell für jedes Einzelsegment in der **Excel Datei** angepasst werden
-Für sämtliche Wand- und Objektparameter sind bereits gängige Anfangswerte eingetragen, daher ist es nicht zwingend erforderlich, diese Registerkarten vollständig zu befüllen
-So lange die Palette geöffnet ist, können in einem Zug nacheinander mehrere Pfadverläufe gespeichert werden. Allerdings ist es dazu erforderlich, bereits im Vorfeld das vorhandene **Tabellenblatt mit dem hinterlegten Excel Schema zu kopieren**. Nur dieses beinhaltet die Formeln und Querverweise die für die engültige Berechnung der LSW Objekte notwendig sind
+Für sämtliche Wand- und Objektparameter sind bereits gängige Anfangswerte eingetragen, daher ist es nicht zwingend erforderlich, diese Registerkarten vollständig zu befüllen.
+So lange die Palette geöffnet ist, können in einem Zug nacheinander mehrere Pfadverläufe gespeichert werden. Allerdings ist es dazu erforderlich, bereits im Vorfeld das vorhandene **Tabellenblatt mit dem hinterlegten Excel Schema zu kopieren**. Nur dieses beinhaltet die Formeln und Querverweise die für die endgültige Berechnung der LSW Objekte notwendig sind.
 
 ##
 ### Schritt V: Individuelle Anpassung 
 > ⚠️ **ACHTUNG**:
 >  Die in der Tabelle vorhandene **Struktur und Reihenfolge** ist fest vorgegeben und dient zur Grundlage für die Berechnung und Erstellung der Einzelobjekte. Sie muss daher zwingend **unverändert beibehalten** werden. Es lassen sich ausschließlich Zellen mit **einfachen (Zahlen)Werten** verändern, nicht jedoch solche mit **Formeln oder Querverweisen**.
-Ansonsten kann das Skript entweder nur mit Fehlern, oder aber gar nicht mehr ausgeführt werden
+Ansonsten kann das Skript entweder nur mit Fehlern, oder aber gar nicht mehr ausgeführt werden.
 
-Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für jedes Einzelsegment in der Excel Datei, die analog zum PythonPart Pfadpunkte speichern dafür jeweils einen eigenen Bereich **Allgemeine Wandparameter** und **Objektparameter** enthält
+Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für jedes Einzelsegment in der Excel Datei, die analog zum PythonPart Pfadpunkte speichern dafür jeweils einen eigenen Bereich **Allgemeine Wandparameter** und **Objektparameter** enthält.
 
 <img src = "./docs/Excel_WandParam.png" width = 200/>               <img src = "./docs/Excel_KomponentenParam.png" width = 300/>
 
@@ -184,13 +185,13 @@ Modifizieren der initial eingestellten pauschalen Wand- und Objektparameter für
     die Zählung erfolgt von **unten nach oben** wobei alle Elemente eines Bereiches jeweils durch **ein** transparentes Element ersetzt werden
 - die **Erstellung** einzelner Segmente in der ersten Spalte komplett unterdrücken
 
-Für die Neuberechung der Excel Datei mit den angepassten Werten muss diese über die gleichnamige Schaltfläche **gespeichert** werden
+Für die Neuberechnung der Excel Datei mit den angepassten Werten muss diese über die gleichnamige Schaltfläche **gespeichert** werden
 
 
 > ⚠️ **ACHTUNG**:
-> Selbst wenn in der Tabelle keine Anpassungen vorgenommen werden, muss die Excel Datei **geöffnet** und **gespeichert** werden. Erst damit wird die interne Berechnung angestoßen und die weiteren Schritte können ausgeführt werden
+> Selbst wenn in der Tabelle keine Anpassungen vorgenommen werden, muss die Excel Datei **geöffnet** und **gespeichert** werden. Erst damit wird die interne Berechnung angestoßen und die weiteren Schritte können ausgeführt werden.
 
-Die **Schritte VI - VIII** sind voneinander unabhängig und können auch entfallen, wenn beispielsweise nur 2D Zeichnungen der Lärmschutzwand benötigt werden. Eine spezifische Reihenfolge muss hier ebenfalls nicht eingehalten werden
+Die **Schritte VI - VIII** sind voneinander unabhängig und können auch entfallen, wenn beispielsweise nur 2D Zeichnungen der Lärmschutzwand benötigt werden. Eine spezifische Reihenfolge muss hier ebenfalls nicht eingehalten werden.
 
 ##
 ### Schritt VI: PythonPart Wandobjekte erstellen
@@ -205,8 +206,8 @@ Erstellen eines 3D Modells der Lärmschutzwand mit allen Einzelobjekten auf Basi
     - Angabe der **Formatierung** (Farbe, Layer) für die Nummerierung
     - Auswahl der **Excel Datei** und des Tabellenblatts
 
-Nach Auswahl des Tabellenblatts wird an der Stelle des zu grunde ligenden Pfades eine **Vorschau** angezeigt. Durch einen Klick auf die Schaltfäche **Erzeugen** werden alle Bestandteile der Lärmschutzwand als einfache 3D Körper im aktiven Teilbild erstellt. Zudem enthalten sie alle relevanten Kennwerte und Parameter in Form von **Attributen** und die einzelnen LSW Elemente sind segmentweise zu einer **Elementgruppe** zusammengefasst. Die Nummerierung der Pfähle wird als 2D Text erzeugt.
->**HINWEIS**: durch Auswahl einer anderen Excel Datei und/oder Tabellenblatt lassen sich mehrere LSW Modelle in einem Zuge erstellen, solange die Palette geöffnet ist
+Nach Auswahl des Tabellenblatts wird an der Stelle des zu grunde liegenden Pfades eine **Vorschau** angezeigt. Durch einen Klick auf die Schaltfäche **Erzeugen** werden alle Bestandteile der Lärmschutzwand als einfache 3D Körper im aktiven Teilbild erstellt. Zudem enthalten sie alle relevanten Kennwerte und Parameter in Form von **Attributen** und die einzelnen LSW Elemente sind segmentweise zu einer **Elementgruppe** zusammengefasst. Die Nummerierung der Pfähle wird als 2D Text erzeugt.
+>**HINWEIS**: durch Auswahl einer anderen Excel Datei und/oder Tabellenblatt lassen sich mehrere LSW Modelle in einem Zuge erstellen, solange die Palette geöffnet ist.
 ##
 ### Schritt VII: PythonPart Wandabwicklung zeichnen
 
@@ -216,7 +217,7 @@ Zeichnen einer **2D Längsabwicklung** der Lärmschutzwand einschließlich einer
 - Pfahl - Pfeiler, Sockel - LSW Element
     - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer, Fillingfarbe) der einzelnen Wandkomponenten
 - Inhalt Tabelle
-    - Angabe ob die Tabelle erstellt werden soll sowie Angabe des **Layers**
+    - Angabe, ob die Tabelle erstellt werden soll sowie Angabe des **Layers**
     - Festlegung der **Gesamtanzahl** sowie der jeweiligen **Parameter** der einzelnen **Reihen** der dynamischen Tabelle
 - Inhalt Grafik
     - Angabe der zu erstellenden **Beschriftung** einschließlich ihres jeweiligen **Layers**
@@ -236,15 +237,15 @@ Zeichnen eines oder mehrerer **2D Schnitte** der einzelnen LSW Segmente einschli
     - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer, Fillingfarbe) der einzelnen Wandkomponenten
 - Tabelle - Bemaßung
     - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) und ob Tabelle oder Bemaßung erstellt werden sollen
-- Content graphic
+- Inhalt Grafik
     - Angabe der **Formatierung** (Stift, Strich, Farbe, Layer) der **Kurvenverläufe** von Gelände und Gradiente und ob diese erstellt werden sollen
 - Objekte erzeugen
     - Auswahl der **Excel Datei** und des Tabellenblatts
     - Festlegung der Segmente (Pfosten) **Nummern** von denen Schnitte erstellt werden sollen
     - Angabe des **Abstands** zwischen den Einzelschnitten
 
-Sobald analog zur Abwicklung die Excel Datei und das Tabellenblatt gewählt sowie die gewünschten Segmentnummern eingegeben sind, wird durch einen Klick auf die Schaltfläche **Eingeben** des Platzierungspunktes eine **Vorschau** der Schnitte am Fadenkreuz angezeigt und lässt sich mit einem zweiten Klick im Teilbild absetzen. Es lässt sich weiterhin anpassen bis die Schaltfläche **Erzeugen** geklickt wurde. Damit werden die einzelnen Schnitte der LSW Segmente als **2D Zeichnungen** im aktiven Teilbid erstellt
->**HINWEIS**: es lassen sich in einem Zuge mehrere oder sogar Schnitte aller Segmente der Lärmschutzwand zeichnen. Die Angabe der gewünschten Segmentnummern erfolgt entweder einzeln oder als Bereich und das Ganze lässt sich auch mehrmals nacheinander ausführen
+Sobald analog zur Abwicklung die Excel Datei und das Tabellenblatt gewählt sowie die gewünschten Segmentnummern eingegeben sind, wird durch einen Klick auf die Schaltfläche **Eingeben** des Platzierungspunktes eine **Vorschau** der Schnitte am Fadenkreuz angezeigt und lässt sich mit einem zweiten Klick im Teilbild absetzen. Es lässt sich weiterhin anpassen bis die Schaltfläche **Erzeugen** geklickt wurde. Damit werden die einzelnen Schnitte der LSW Segmente als **2D Zeichnungen** im aktiven Teilbild erstellt.
+>**HINWEIS**: Es lassen sich in einem Zuge mehrere oder sogar Schnitte aller Segmente der Lärmschutzwand zeichnen. Die Angabe der gewünschten Segmentnummern erfolgt entweder einzeln oder als Bereich und das Ganze lässt sich auch mehrmals nacheinander ausführen.
 
 ##
 ### Schritt IX: LSW Auswertung
@@ -262,7 +263,7 @@ Erzeugen von **Reports** oder **Excel Tabellen** der einzelnen LSW Objekte einsc
 - Selektion der auszuwertenden Objekte
 
 Abhängig davon, welche Funktion verwendet wurde, wird entweder ein **ALLPLAN Report** oder eine **Excel Datei** erzeugt, in der sowohl die Geometrie, als auch semantische Informationen wie etwa das Material ausgewertet werden.  Beides lässt sich anschließend beliebig weiter verwenden
->**HINWEIS**: alle Reportvorlagen besitzen eine integrierte **Zoom und Markieren** Funktion, mit der sich die aufgelisteten Objekte durch einen Klick auf die zugehörige Grafik ober das graue Kästchen im Teilbild lokalisieren lassen
+>**HINWEIS**: alle Reportvorlagen besitzen eine integrierte **Zoom- und Markieren** Funktion, mit der sich die aufgelisteten Objekte durch einen Klick auf die zugehörige Grafik oder das graue Kästchen im Teilbild lokalisieren lassen
 
 <img src = "./docs/Zoom_Bild.png" width = 200/>               <img src = "./docs/Zoom_Kasten.png" width = 200/>
 
@@ -342,7 +343,50 @@ Besides the library, the individual PythonParts of the tool can also be found in
 
 
 ## Preparation
-As mentioned, the basis for the tool are **3D polylines** and connected close **3D areas** in the form of surfaces/polyhedrons.
+As mentioned, the basis for the tool are **3D polylines** and connected close **3D areas** (for example from road or rail construction) in the form of surfaces/polyhedrons.
+
+
+### Terrain surface
+
+Depending on the provided base data ALLPLAN offers different possibilities to create the necessary **3D surface**. In particluar the functions of the **Digital Terrain Model** from the **Road construction** that role are very flexible as they have been developed especially for such cases
+Für das Erzeugen der erforderlichen **3D Flächen** stehen in ALLPLAN, abhängig von den verfügbaren Ausgangsdaten,  unterschiedliche Möglichkeiten zur Verfügung. Die speziell zu diesen Zwecken entwickelten Funktionen des **Digitalen Geländemodells** aus der **Rolle Straßenbau** sind dabei besonders flexibel, da sie Daten aus unterschiedlichen Quellen, beispielsweise Geoportalen oder selbst erzeugte Geländepunkte, verarbeiten können.
+Damit derart erzeugte Geländemodelle die für die LSW Planung erforderliche Form erhalten, sollte für die **Geländedarstellung** der **Darstellungsstil IfcTerrain** verwendet werden. Durch ihn wird die Oberfläche als **zusammenhängende 3D Fläche** im aktiven Teilbild erzeugt.
+
+<img src = "./docs/Terrain_style.png" width = 300/> 
+
+Das manuelle Erstellen mit den ALLPLAN Funktionen des Moduls **Freies Modellieren** ist ebenfalls möglich.
+
+<img src = "./docs/Basic_Surface.png" width = 300/>
+
+Je nachdem, in welcher Form sie erzeugt werden, kann es im Vorfeld zudem erforderlich sein, die vorhandenen ALLPLAN Objekte in geeignete "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
+
+<img src = "./docs/Prep_Convert_II.png" width = 150/>
+
+Zur Vereinigung separater Einzelflächen kann der **Boolesche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
+
+### Referenzachse
+
+Um bei der internen Berechnung der LSW Parameter (beispielsweise Gradientenhöhen, Stationswerte der LSW Pfosten im Bezug zur Trassierungsachse ...) eine möglichst **hohe Genauigkeit** zu erreichen, sollte der **3D Polygonzug der Referenzachse** im Vorfeld entsprechen aufbereitet werden.
+
+Es wird empfohlen, hierzu die **Achsfunktionen** aus der Rolle **Straßenbau** zu verwende. Mit ihnen lässt sich die Geometrie des resultierenden 3D Polygonzuges über die Parameter sehr einfach steuern.
+
+Der **3D Polygonzug** sollte mit einer zweckmäßigen **Teilung** erzeugt werden, die in der Funktion **Allgemeine Einstellungen** entsprechend festgelegt werden kann.
+
+<figure>
+<img src = "./docs/Axis_Stationing.png" width = 300 alt = "Beschreibung"/>
+<figcaption>Beispielwerte</figcaption>
+</figure>
+
+
+Zudem sollte bei der Verwendung von Referenzachsen, die deutlich länger sind als der geplante LSW Verlauf, ihr Anfangspunkt in den Bereich des Anfangspunktes des LSW-Pfades gelegt werden. Das ist am einfachsten über die Funktion **Projektgrenzen definieren** möglich
+
+<img src = "./docs/Axis_Boundaries.png" width = 400/>
+
+Die manuelle Erstellung der 3D Polygonzüge ist analog zur Geländefläche ebenfalls möglich, wobei auch hier eine nachträgliche **Wandlung** in den benötigten Typ notwendig sein kann.
+
+<img src = "./docs/Prep_Convert_I.png" width = 150/>
+<img src = "./docs/Basic_Polyline.png" width = 300/>
+
 
 <img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
 
@@ -351,7 +395,7 @@ Therefor it might be necessary to convert the existing ALLPLAN objects into such
 <img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
 
 
-To union individual areas, the **Boolean operator** of the same name can be used, as it not only serves for 3D bodies. All objects intended as basis have to be on drawing files either in **active** or **edit mode**, as in reference mode a selection is not possible.
+To union individual areas, the **Booelean operator** of the same name can be used, as it not only serves for 3D bodies. All objects intended as basis have to be on drawing files either in **active** or **edit mode**, as in reference mode a selection is not possible.
 
 ## Workflow
 
