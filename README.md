@@ -4,43 +4,74 @@ FOR ENGLISH VERSION SEE [BELOW](#NoiseBarrierTool)!
 Das aus einzelnen PythonParts bestehende Tool **LSW Planung** ermöglicht die achsbezogene Erstellung von Lärmschutzwänden, sowohl als 3D Körper, als auch in Form von 2D Zeichnungen. Als Grundlage dient eine 3D Fläche (Polyhedron) als Gelände und ein 3D Polygonzug als Bezugsachse. Die Einzelschritte des Gesamtworkflows werden jeweils mit einem eigenen PythonParts ausgeführt:
 - **Pfadverlauf zeichnen** um den initialen Pfadverlauf festzulegen
 - **Pfadverlauf anpassen** zur Neuausrichtung eines geänderten Pfadverlaufs
-- **Pfadpunkte speichern** zum abspeichern der Geometrie und der Objektparameter
+- **Pfadpunkte speichern** zum Abspeichern der Geometrie und der Objektparameter
 - **Wandobjekte erstellen** zur Erstellung eines 3D Modells der Lärmschutzwand
 - **Wandabwicklung zeichnen** zur Erstellung von 2D Längsabwicklungen der Lärmschutzwand
 - **Wandschnitte zeichnen** zur Erstellung von 2D Querschnitten der Pfosten der Lärmschutzwand
 
 <img src = "./docs/LSWContent.png" width = 350/>
 
-Die Einzelschritte des Workflows sind zwar miteinander verbunden, können aber unabhängig voneinander ausgeführt werden. Daher lässt sich das Tool auch generell zur Berechnung von **Pfadverläufe in einem Gelände** verwenden, die zur Platzierung beliebiger Objekte, beispielsweise mit der ALLPLAN Funktion **Kopieren entlang beliebigem Pfad** dienen.
+Die Einzelschritte des Workflows sind zwar miteinander verbunden, können aber unabhängig voneinander ausgeführt werden. Daher lässt sich das Tool auch generell zur Berechnung von **Pfadverläufen in einem Gelände** verwenden, die zur Platzierung beliebiger Objekte, beispielsweise mit der ALLPLAN Funktion **Kopieren entlang beliebigem Pfad**, dienen.
 
 
-Ein wesentlicher Bestandteil des Tool ist die Excel Datei  **LSWParameter.xlsx**. In ihr werden alle Parameter und Kennwerte der Lärmschutzwand gespeichert und (neu) berechnet. Jedes einzelne Segment der Gesamtwand lässt sich darin individuell anpassen. Sie lässt sich aber auch zum Auslesen von Koordinaten- und Geometriewerten nutzen, die anschließend beispielsweise zur Mengen- und Kostenkalkulation verwendet werden können.
-Als weiterer Bestandteil des Tools werden zudem einige ***.rdlc  Dateien** installiert. Damit können die 3D Objekte sowohl in ALLPLAN Reports ausgewertet, als auch direkt nach Excel übergeben werden.
+Ein wesentlicher Bestandteil des Tools ist die Excel Datei  **LSWParameter.xlsx**. In ihr werden alle Parameter und Kennwerte der Lärmschutzwand gespeichert und (neu) berechnet. Jedes einzelne Segment der Gesamtwand lässt sich darin individuell anpassen. Sie lässt sich aber auch zum Auslesen von Koordinaten- und Geometriewerten nutzen, die anschließend beispielsweise zur Mengen- und Kostenkalkulation verwendet werden können.
+Als weiterer Bestandteil des Tools werden zudem einige Reports in Form von ***.rdlc  Dateien** installiert. Damit können die 3D Objekte sowohl in ALLPLAN Reports ausgewertet, als auch direkt nach Excel übergeben werden.
 
 ## Installation
-Das Gesamtpake **LSW Planung** lässt sich dierkt über den PluginManager in ALLPLAN installieren.
+Das Gesamtpaket **LSW Planung** lässt sich direkt über den PluginManager in ALLPLAN installieren.
 
 Alternativ kann die ***.allep** Datei von der zugehörigen [Release Website](https://github.com/AnkeNiedermaier/noise-barrier-public/releases) direkt heruntergeladen werden. Bei ***.allep** Dateien handelt es sich um ein internes ALLPLAN Setup, das sich per Drag und Drop in das Programmfenster installieren lässt.
 
 Voraussetzung zur Installation des PythonParts ist die ALLPLAN Version 2026.
 
 ## Installierte PythonPart Skripte
-Nach erfolgreicher Installation sind die einzelnen PythonParts des Tools **LSW Planung** zusammen mit der Ecxel Datei **LSWParameter.xlsx** in der ALLPLAN Bibliothek zu finden:
+Nach erfolgreicher Installation sind die einzelnen PythonParts des Tools **LSW Planung** zusammen mit der Excel Datei **LSWParameter.xlsx** in der ALLPLAN Bibliothek zu finden:
 `Std` →`Library` → `ALLPLAN GmbH` → `LSW Planung`
 Die ***.rdlc** Dateien werden ebenfalls im Std Ordner abgelegt:
 `Std` → `Reports`→ `deu / eng` → `LSW Planung / NoiseBarrierTool`
 Die einzelnen PythonParts des Tools werden neben der Bibliothek auch in einem neu angelegten Aufgabenbereich **LSW Planung** in der Aufgabe **Plug-in** in die ActionBar aufgenommen.
 
 ## Vorbereitung
-Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzüge** und zum anderen zusammenhängende geschlossene **3D Flächen** in Form eines Polyhedrons.
+Wie erwähnt dienen als Grundlage für die Berechnung einerseits **3D Polygonzüge** der Referenzachsen (beispielsweise aus dem Straßen- und Bahnbau) und zum anderen zusammenhängende geschlossene **3D Flächen** des Geländeverlaufs in Form eines Polyhedrons.
 
-<img src = "./docs/Basic_Fläche.png" width = 300/>          <img src = "./docs/Basic_Polygonzug.png" width = 300/>
+### Geländeoberfläche
 
-Es kann daher im Vorfeld erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
+Für das Erzeugen der erforderlichen **3D Flächen** stehen in ALLPLAN, abhängig von den verfügbaren Ausgangsdaten,  unterschiedliche Möglichkeiten zur Verfügung. Die speziell zu diesen Zwecken entwickelten Funktionen des **Digitalen Geländemodells** aus der **Rolle Straßenbau** sind dabei besonders flexibel, da sie Daten aus unterschiedlichen Quellen, beispielsweise Geoportalen oder selbst erzeugte Geländepunkte, verarbeiten können.
+Damit derart erzeugte Geländemodelle die für die LSW Planung erforderliche Form erhalten, sollte für die **Geländedarstellung** der **Darstellungsstil IfcTerrain** verwendet werden. Durch ihn wird die Oberfläche als **zusammenhängende 3D Fläche** im aktiven Teilbild erzeugt.
 
-<img src = "./docs/Prep_Wandeln_I.png" width = 150/>           <img src = "./docs/Prep_Wandeln_II.png" width = 150/>
+<img src = "./docs/Gelaende_style.png" width = 200/> 
+
+Das manuelle Erstellen mit den ALLPLAN Funktionen des Moduls **Freies Modellieren** ist ebenfalls möglich.
+
+<img src = "./docs/Basic_Fläche.png" width = 300/>
+
+Je nachdem, in welcher Form sie erzeugt werden, kann es im Vorfeld zudem erforderlich sein, die vorhandenen ALLPLAN Objekte in derartige "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
+
+<img src = "./docs/Prep_Wandeln_II.png" width = 150/>
 
 Zur Vereinigung separater Einzelflächen kann der **Boolsche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
+
+### Referenzachse
+
+Um bei der internen Berechnung der LSW Parameter (beispielsweise Gradientenhöhen, Stationswerte der LSW Pfosten im Bezug zur Trassierungsachse ...) eine möglichst **hohe Genauigkeit** zu erreichen, sollte der **3D Polygonzug der Referenzachse** im Vorfeld entesprechen aufbereitet werden.
+
+Es wird empfohlen, hierzu die **Achsfunktionen** aus der Rolle **Straßenbau** zu verwende. Mit ihnen lässt sich die Geometrie des resultierenden 3D Polygonzuges über die Parameter sehr einfach steuern.
+
+Der **3D Polygonzug** sollte mit einer zweckmäßigen **Teilung** erzeugt werden, die in der Funktion **Allgemeine Einstellungen** entsprechend festgelegt werden kann.
+
+<figure>
+<img src = "./docs/Achse_Stationing.png" width = 200 alt = "Beschreibung"/>
+<figcaption>Beispielwerte</figcaption>
+</figure>
+
+Zudem sollte bei der Verwendung von Referenzachsen, die deutlich länger sind als der geplante LSW Verlauf, ihr Anfangspunkt in den Bereich des Anfangspunktes des LSW-Pfades gelegt werden. Das ist am einfachsten über die Funktion **Projektgrenzen definieren** möglich
+
+<img src = "./docs/Achse_Boundaries.png" width = 300/>
+
+Die manuelle Erstellung der 3D Polygonzüge ist analog zur Geländefläche ebenfalls möglich, wobei auch hier eine nachträgliche **Wandlung** in den benötigten Typ notwendig sein kann.
+
+<img src = "./docs/Prep_Wandeln_I.png" width = 150/>
+<img src = "./docs/Basic_Polygonzug.png" width = 300/>
 
 ## Workflow
 
