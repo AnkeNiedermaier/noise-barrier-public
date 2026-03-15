@@ -348,54 +348,43 @@ As mentioned, the basis for the tool are **3D polylines** and connected close **
 
 ### Terrain surface
 
-Depending on the provided base data ALLPLAN offers different possibilities to create the necessary **3D surface**. In particluar the functions of the **Digital Terrain Model** from the **Road construction** that role are very flexible as they have been developed especially for such cases
-Für das Erzeugen der erforderlichen **3D Flächen** stehen in ALLPLAN, abhängig von den verfügbaren Ausgangsdaten,  unterschiedliche Möglichkeiten zur Verfügung. Die speziell zu diesen Zwecken entwickelten Funktionen des **Digitalen Geländemodells** aus der **Rolle Straßenbau** sind dabei besonders flexibel, da sie Daten aus unterschiedlichen Quellen, beispielsweise Geoportalen oder selbst erzeugte Geländepunkte, verarbeiten können.
-Damit derart erzeugte Geländemodelle die für die LSW Planung erforderliche Form erhalten, sollte für die **Geländedarstellung** der **Darstellungsstil IfcTerrain** verwendet werden. Durch ihn wird die Oberfläche als **zusammenhängende 3D Fläche** im aktiven Teilbild erzeugt.
+Depending on the provided base data ALLPLAN offers different possibilities to create the necessary **3D surface**. In particluar the functions of the **Digital Terrain Model** from the role **Road construction** are very flexible as they have been developed especially for such cases and can handle data from different sources like Geoportals or manualy created terrain points.
+To give these terrain models the appropriate format for the NoiseBarrierTool it is recommended to use the **Surface visual style IfcTerrain** for the display. With this, the surface is created as **continuous 3D surface** in the current active drawing file.
 
 <img src = "./docs/Terrain_style.png" width = 300/> 
 
-Das manuelle Erstellen mit den ALLPLAN Funktionen des Moduls **Freies Modellieren** ist ebenfalls möglich.
+It is also possible to create the surfaces manually in using functions from the **Modeling** modul in ALLPLAN.
 
 <img src = "./docs/Basic_Surface.png" width = 300/>
 
-Je nachdem, in welcher Form sie erzeugt werden, kann es im Vorfeld zudem erforderlich sein, die vorhandenen ALLPLAN Objekte in geeignete "Typen" zu konvertieren. Dazu lassen sich die Funktionen der Aufgabe **Freies Modellieren**, in erster Linie **Elemente wandeln** und **Mantel** verwenden.
+Depending on the used creating option it might previously be necessary to convert the existing ALLPLAN objects into suitable "types". This is done in using functions from the **Modeling** modul, mainly **Convert Elements** and **Shell**.
 
 <img src = "./docs/Prep_Convert_II.png" width = 150/>
 
-Zur Vereinigung separater Einzelflächen kann der **Boolesche Operator** **Körper vereinigen** genutzt werden, der sich entgegen seiner Bezeichnung nicht nur auf Körper anwenden lässt. Alle Objekte, die als Grundlage verwendet werden sollen, müssen sich auf einem **aktiven** oder **teilaktiven** Teilbild befinden, Objekte auf passiven Teilbildern können nicht ausgewählt werden.
+To union individual areas, the **Booelean operator** of the same name can be used, as it not only serves for 3D bodies. All objects intended as basis have to be on drawing files either in **active** or **edit mode**, as in reference mode a selection is not possible.
 
-### Referenzachse
+### Reference axis
 
-Um bei der internen Berechnung der LSW Parameter (beispielsweise Gradientenhöhen, Stationswerte der LSW Pfosten im Bezug zur Trassierungsachse ...) eine möglichst **hohe Genauigkeit** zu erreichen, sollte der **3D Polygonzug der Referenzachse** im Vorfeld entsprechen aufbereitet werden.
+To achieve the **highest possible precision** for the internal calculation of the noise barrier parameters (like gradient height, station values in reference to the alignment axis ...) the **3D polyline of the reference axis** has to be prepared accordingly.
 
-Es wird empfohlen, hierzu die **Achsfunktionen** aus der Rolle **Straßenbau** zu verwende. Mit ihnen lässt sich die Geometrie des resultierenden 3D Polygonzuges über die Parameter sehr einfach steuern.
+It is recommended to use the **axis functions** from the **Road construction** role for this purpose. They offer possibilities to easily controll the geometry of the resulting 3D polyline.
 
-Der **3D Polygonzug** sollte mit einer zweckmäßigen **Teilung** erzeugt werden, die in der Funktion **Allgemeine Einstellungen** entsprechend festgelegt werden kann.
+The **3D polyline** should be divided accordingly, which can be done in using the **General settings** function.
 
 <figure>
-<img src = "./docs/Axis_Stationing.png" width = 300 alt = "Beschreibung"/>
-<figcaption>Beispielwerte</figcaption>
+<img src = "./docs/Axis_Stationing.png" width = 300 alt = "description"/>
+<figcaption>values are examples</figcaption>
 </figure>
 
-
-Zudem sollte bei der Verwendung von Referenzachsen, die deutlich länger sind als der geplante LSW Verlauf, ihr Anfangspunkt in den Bereich des Anfangspunktes des LSW-Pfades gelegt werden. Das ist am einfachsten über die Funktion **Projektgrenzen definieren** möglich
+In addition, if the reference axis is much longer than the intended course of the noise barrier, the axis start point should be positioned close to the start point of the noise barrier path. The easiest way to do so is in using the **Set project boundaries** function.
 
 <img src = "./docs/Axis_Boundaries.png" width = 400/>
 
-Die manuelle Erstellung der 3D Polygonzüge ist analog zur Geländefläche ebenfalls möglich, wobei auch hier eine nachträgliche **Wandlung** in den benötigten Typ notwendig sein kann.
+Similar to the terrain surface it is also possible to create the 3D polylines manually in using the common ALLPLAN functions. It might be necessary to **convert** them into the appropriate type here too.
 
 <img src = "./docs/Prep_Convert_I.png" width = 150/>
 <img src = "./docs/Basic_Polyline.png" width = 300/>
 
-
-<img src = "./docs/Basic_Surface.png" width = 350/>          <img src = "./docs/Basic_Polyline.png" width = 350/>
-
-Therefor it might be necessary to convert the existing ALLPLAN objects into such types. This is done in using functions from the **Modeling** modul, mainly **Convert Elements** and **Shell**.
-
-<img src = "./docs/Prep_Convert_I.png" width = 150/>           <img src = "./docs/Prep_Convert_II.png" width = 150/>
-
-
-To union individual areas, the **Booelean operator** of the same name can be used, as it not only serves for 3D bodies. All objects intended as basis have to be on drawing files either in **active** or **edit mode**, as in reference mode a selection is not possible.
 
 ## Workflow
 
